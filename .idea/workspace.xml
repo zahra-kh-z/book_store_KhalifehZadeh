@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add product app">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add orders app">
       <change beforePath="$PROJECT_DIR$/src/book_store/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/book_store/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1628181131140</updated>
       <workItem from="1628181132253" duration="1243000" />
-      <workItem from="1628635584951" duration="739000" />
+      <workItem from="1628635584951" duration="941000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -74,7 +73,21 @@
       <option name="project" value="LOCAL" />
       <updated>1628636182813</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add orders app">
+      <created>1628636376260</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628636376260</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add orders app">
+      <created>1628636394202</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628636394202</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +110,7 @@
     <MESSAGE value="readme" />
     <MESSAGE value="add book_store postgres database" />
     <MESSAGE value="add product app" />
-    <option name="LAST_COMMIT_MESSAGE" value="add product app" />
+    <MESSAGE value="add orders app" />
+    <option name="LAST_COMMIT_MESSAGE" value="add orders app" />
   </component>
 </project>
