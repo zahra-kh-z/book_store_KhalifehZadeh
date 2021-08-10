@@ -1,7 +1,7 @@
 from django.db import models
 from decimal import Decimal
-from product.models import Book, Discount, DiscountCode
 from myusers.models import Customer
+from product.models import Book, Discount, DiscountCode
 
 
 # Create your models here.

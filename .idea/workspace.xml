@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add static,medias,urls" />
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add static,medias,urls">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/orders/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +37,7 @@
       <option name="presentableId" value="Default" />
       <updated>1628181131140</updated>
       <workItem from="1628181132253" duration="1243000" />
-      <workItem from="1628635584951" duration="1355000" />
+      <workItem from="1628635584951" duration="2775000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -99,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628636920421</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add static,medias,urls">
+      <created>1628636975314</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1628636975314</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
