@@ -57,7 +57,7 @@ ROOT_URLCONF = 'book_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,7 +127,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static_zahra/'
+# STATICFILES_DIRS is a array of strings, strings is path of static file
+STATICFILES_DIRS = [BASE_DIR / 'static']
+# collect all STATICFILES to one folder is STATIC_ROOT, is a one string
+STATIC_ROOT = BASE_DIR / 'assets'
+# then in terminal: python manage.py collectstatic
+
+# MEDIA
+# for show uploaded images in admin page, then should add urlpatterns in urls.py
+MEDIA_URL = '/media_zahra/'
+MEDIA_ROOT = BASE_DIR / 'medias'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
