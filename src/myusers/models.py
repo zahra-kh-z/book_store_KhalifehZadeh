@@ -57,7 +57,7 @@ class User(AbstractBaseUser):
     """for admin and staff (employee)"""
 
     class Meta:
-        verbose_name = 'کامند'
+        verbose_name = 'کارمند'
         verbose_name_plural = 'کارمندان'
 
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add data in admin panel, postgres">
-      <change afterPath="$PROJECT_DIR$/ERD.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add ERD and Report">
+      <change beforePath="$PROJECT_DIR$/src/myusers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/myusers/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
       <option name="presentableId" value="Default" />
       <updated>1628181131140</updated>
       <workItem from="1628181132253" duration="1243000" />
-      <workItem from="1628635584951" duration="3321000" />
+      <workItem from="1628635584951" duration="3494000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -130,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628639017223</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add ERD and Report">
+      <created>1628639514186</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1628639514186</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +162,7 @@
     <MESSAGE value="add myusers app" />
     <MESSAGE value="add static,medias,urls" />
     <MESSAGE value="add data in admin panel, postgres" />
-    <option name="LAST_COMMIT_MESSAGE" value="add data in admin panel, postgres" />
+    <MESSAGE value="add ERD and Report" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ERD and Report" />
   </component>
 </project>
