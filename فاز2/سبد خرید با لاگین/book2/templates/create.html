@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Checkout
+{% endblock %}
+
+{% block content %}
+  <h1>ثبت سفارش</h1>
+
+
+  <form method="post" class="order-form">
+    {{ form.as_p }}
+    <p><input type="submit" value="ثبت"></p>
+    {% csrf_token %}
+  </form>
+{% endblock %}

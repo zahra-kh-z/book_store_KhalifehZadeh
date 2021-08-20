@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}لیست کتاب ها{% endblock title %}
+{% block content %}
+{% load static %}
+{#{% for task in object_list %}#}
+{#    {{ task.title|title }}#}
+{#{% endfor %}#}
+
+<h1>لیست کتاب ها</h1>
+<div class="row">
+    {% for each in object_list %}
+        {% if each.label == 'BestSeller' %}
+{#                 {% if each.books.all.count_use >= 0 %}#}
+
+    <div class="col py-3">
+        <div class="card " style="width: 13rem;">
+
+        {% if each.picture %}
+            <img class="bookcover card-img-top" src="{{ each.picture.url}}" alt="{{ each.title }}" style="width: 200px; height: 200px;" >
+        {% endif %}
+
+            <div class="card-body ">
+{#                <h5 class="card-title">{{ each.title|slice:":25"}} ...</h5>#}
+                <h5 class="card-title">{{ each.title|slice:":25"}} </h5>
+{#                <p class="card-text">${{ each.price|floatformat:2 }}</p>#}
+                <p class="card-text">{{ each.price|floatformat:2 }} تومان </p>
+{#                {% if each.book_available is True %}#}
+
+
+
+              {% for inv in each.books_inv.all %}
+                 {% if inv.cont_new != 0%}
+                <li class="text-primary">موجود:  {{ inv.cont_new }} </li>
+                {% else %}
+                <li class="text-danger">موجود نیست</li>
+                {% endif %}<br>
+
+            {% endfor %}
+
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >خرید
+                <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+            </div>
+        </div>
+    </div>
+
+
+        {% endif %}
+    {% endfor %}
+
+
+</div>
+
+
+{% endblock content %}
+
+

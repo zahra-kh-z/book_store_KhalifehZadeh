@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
+ <section class="bg-light p-3 m-3 text-center">
+
+ <h2>جزئیات کتاب:</h2>
+{#Vertical Headings:#}
+     {% if product.image %}
+      <img style="width: 200px; height: 200px;" class="ui medium rounded image" src={{product.image.url}}>
+     {% endif %}
+
+{#    <h2>#}
+{#      <a href="{{ product.category.get_absolute_url }}">#}
+{#        {{ product.category }}#}
+{#      </a>#}
+{#    </h2>#}
+
+<table style="border-collapse:collapse; margin: 30px auto ">
+  <tr>
+    <th>عنوان:</th>
+    <td>{{ product.name }}</td>
+
+  </tr>
+  <tr>
+{#    <th>Category</th>#}
+{#    <td>{{ object.category }}</td>#}
+{#      {% for cat in object.category %}#}
+{#        <td>{{ cat }}</td>#}
+{#      {% endfor %}#}
+{#  </tr>#}
+  <tr>
+    <th>برچسب:</th>
+    <td>{{ product.label }}</td>
+  </tr>
+       <tr>
+    <th>قیمت واحد:</th>
+    <td>{{ product.unit_price }}</td>
+  </tr>
+   <tr>
+    <th>تخفیف:</th>
+    <td>{{ product.discount_book }}</td>
+  </tr>
+   <tr>
+    <th>موجودی:</th>
+    <td>{{ product.available }}</td>
+  </tr>
+   <tr>
+    <th>نویسنده:</th>
+    <td>{{ product.author }}</td>
+  </tr>
+</table>
+
+      <form action="{% url 'basket:basket_add' product.id %}" method="post">
+          {{ basket_product_form }}
+          {% csrf_token %}
+{#          <input type="submit" value="خرید" class="btn btn-primary height-auto btn-sm">#}
+             <input value="خرید"  class="btn btn-primary btn-md my-0 p"  type="submit" >
+                <i class="fas fa-shopping-cart ml-1"></i>
+            </input>
+      </form>
+
+
+ </section>
+{% endblock content %}

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add ERD and Report">
-      <change beforePath="$PROJECT_DIR$/src/myusers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/myusers/models.py" afterDir="false" />
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="comment">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_5_2021_9_06_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_5_2021_9_06_PM__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ERD.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/ERD.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Report.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../book_shop_test/book2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -42,7 +47,14 @@
       <option name="presentableId" value="Default" />
       <updated>1628181131140</updated>
       <workItem from="1628181132253" duration="1243000" />
-      <workItem from="1628635584951" duration="3494000" />
+      <workItem from="1628635584951" duration="4153000" />
+      <workItem from="1628933183421" duration="693000" />
+      <workItem from="1629065338688" duration="964000" />
+      <workItem from="1629114252577" duration="8828000" />
+      <workItem from="1629411692743" duration="3561000" />
+      <workItem from="1629432740731" duration="24000" />
+      <workItem from="1629472284317" duration="3832000" />
+      <workItem from="1629478069320" duration="347000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -135,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628639514186</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="comment">
+      <created>1628639732862</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1628639732862</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +182,7 @@
     <MESSAGE value="add static,medias,urls" />
     <MESSAGE value="add data in admin panel, postgres" />
     <MESSAGE value="add ERD and Report" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ERD and Report" />
+    <MESSAGE value="comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment" />
   </component>
 </project>

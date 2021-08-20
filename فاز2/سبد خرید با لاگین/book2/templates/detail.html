@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/task_list.css' %}>
+ <section class="bg-light p-3 m-3 text-center">
+
+ <h2>Book Details:</h2>
+{#Vertical Headings:#}
+{#     {% if object.picture %}#}
+      <img style="width: 200px; height: 200px;" class="ui medium rounded image" src={{object.picture.url}}>
+{#     {% endif %}#}
+
+<table style="border-collapse:collapse; margin: 30px auto ">
+  <tr>
+    <th>Title</th>
+    <td>{{ object.title }}</td>
+  </tr>
+  <tr>
+{#    <th>Category</th>#}
+{#    <td>{{ object.category }}</td>#}
+{#      {% for cat in object.category %}#}
+{#        <td>{{ cat }}</td>#}
+{#      {% endfor %}#}
+{#  </tr>#}
+  <tr>
+    <th>label</th>
+    <td>{{ object.label }}</td>
+  </tr>
+   <tr>
+    <th>Discount</th>
+    <td>{{ object.discount }}</td>
+  </tr>
+   <tr>
+    <th>Status_available</th>
+    <td>{{ object.available }}</td>
+  </tr>
+   <tr>
+    <th>Author</th>
+    <td>{{ object.author }}</td>
+  </tr>
+</table>
+
+ </section>
+{% endblock content %}
