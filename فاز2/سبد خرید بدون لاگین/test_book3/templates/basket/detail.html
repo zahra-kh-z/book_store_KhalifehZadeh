@@ -68,21 +68,16 @@
 
             <!-- remove sabt -->
                 <td>
-{#                {% if order_item.item.order_btn_title == "Purchase" and order_item.quantity < order_item.item.inventory %}#}
-{#                {% if product.inventory < 0 and item.quantity < product.inventory %}#}
+
                   <a
-{#                    href="{% url 'product:remove-single-item-from-cart' order_item.item.slug %}"#}
-{#                    href="{% url 'basket:check_inventory' product.id %}"#}
                     href="#"
                     class="click_sabt btn btn-primary height-auto btn-sm">ثبت</a>
-{#                    {{ product.inventory }}#}
 
                     <script>
                         $(".click_sabt").click(function(event) {
                             if ({{product.inventory}} > {{ 0 }} && {{item.quantity}} < {{product.inventory}}) {
                                 {#print({{ product.inventory }})#}
                             {{ product.remove_items_from_inventory }}
-{#                            {{item.reduce_inventory }}#}
                                 alert('سفارش ثبت شد');
 
                             } else {
@@ -108,7 +103,10 @@
                 </td>
                 <!-- end remove sabt  -->
 
+
           </tr>
+
+
 
 
         {% endwith %}

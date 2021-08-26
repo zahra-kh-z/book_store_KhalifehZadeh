@@ -43,10 +43,28 @@ INSTALLED_APPS = [
     'orders',
     'myusers',
     'crispy_forms',
+    'accounts',
+    'panel',
+    'rest_framework',
 
 ]
 
 BASKET_SESSION_ID = 'basket'
+
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = "/accounts/dashboard"
+LOGIN_URL = "/accounts/login/"
+# Email setting
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# use gmail for email service
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # new
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'zahra.kh2005@gmail.com'
+EMAIL_HOST_PASSWORD = 'wkofzkrxnwjzbymk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,7 +107,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 """
 بعد از اصلاح و تکمیل کد دیتابیس را عوض کن

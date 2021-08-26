@@ -1,8 +1,8 @@
 from django.db import models
 from product.models import *
 from off.models import DiscountCode, Discount
-from myusers.models import Address, Customer
-
+from accounts.models import Address
+from django.conf import settings
 
 # Create your models here.
 
@@ -10,6 +10,8 @@ from myusers.models import Address, Customer
 class Invoice(models.Model):
     STATUS_CHOICES = (('Pending', 'سفارش'), ('Delivered', 'ثبت شده'))
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order_user')
+    # customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='customer_ord')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -17,13 +19,10 @@ class Invoice(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     # email for order not be unique
-    email = models.EmailField(unique=True, blank=True, null=True)
+    # email = models.EmailField(unique=True, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     # address = models.CharField(max_length=250)
     address = models.ForeignKey(Address, on_delete=models.DO_NOTHING, related_name='addr_ord', blank=True, null=True)
-
-    # customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='customer_ord')
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # total_price = models.BigIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ('-created',)  # ordering by the created field
@@ -45,7 +44,7 @@ class InvoiceItem(models.Model):
     price = models.BigIntegerField(default=0)
     # price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
-
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # ordered = models.BooleanField(default=False)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

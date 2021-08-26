@@ -6,7 +6,7 @@
 
 {% block content %}
     {% load static %}
-    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
+    <link rel="stylesheet" href={% static 'css/task_list.css' %}>
  <section class="bg-light p-3 m-3 text-center">
 
  <h2>جزئیات کتاب:</h2>
@@ -28,12 +28,7 @@
 
   </tr>
   <tr>
-{#    <th>Category</th>#}
-{#    <td>{{ object.category }}</td>#}
-{#      {% for cat in object.category %}#}
-{#        <td>{{ cat }}</td>#}
-{#      {% endfor %}#}
-{#  </tr>#}
+
   <tr>
     <th>برچسب:</th>
     <td>{{ product.label }}</td>
@@ -59,7 +54,6 @@
       <form action="{% url 'basket:basket_add' product.id %}" method="post">
           {{ basket_product_form }}
           {% csrf_token %}
-{#          <input type="submit" value="خرید" class="btn btn-primary height-auto btn-sm">#}
              <input value="خرید"  class="btn btn-primary btn-md my-0 p"  type="submit" >
                 <i class="fas fa-shopping-cart ml-1"></i>
             </input>

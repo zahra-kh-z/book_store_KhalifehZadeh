@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+  {% if request.user.is_authenticated %}
+      {{ user.full_name }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<br>
+    <button class="btn btn-info " type="submit"><a class="text-dark text-decoration-none" href="{% url 'orders:tasks_json_list' %}" download>دانلود سفارشات روز جاری</a></button>
+<br>
+
+{%  if orders_count %}
+    تعداد کل سفارشات: {{ orders_count }}
+    {% endif %}
+
+    <br>
+    درآمد کلی سایت:
+    {{ total }}
+
+      {% for a in orders %}
+           <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ a.status }}</a>
+        {{ a.status }}
+        {{ a.user }}
+        {{ a.created }}
+    {% endfor %}
+
+
+
+{% endblock %}

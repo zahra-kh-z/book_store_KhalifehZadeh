@@ -30,46 +30,45 @@
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
         crossorigin="anonymous"/>
 
-
     <title>{% block title %}صفحه اصلی{% endblock title %}</title>
 
 </head>
 <body dir="RTL">
-{#    <body>#}
-{#<header class="sticky-top">#}
+
         <nav class="navbar navbar-expand-md navbar-dark bg-warning mb-4 p-2 sticky-top">
-{#        <nav class="navbar navbar-expand-md navbar-dark bg-warning mb-4 p-2 ">#}
-
             <div class="collapse navbar-collapse" id="navbarCollapse" >
+            <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="navbar-nav">
+        {% if request.user.is_authenticated %}
+             <a href="{% url 'accounts:logout' %}" class="btn btn-primary" style="margin-left: 10px; margin-right: 20px">خروج</a>
+                 <a class="nav-link dropdown-toggle text-danger " href="#" id="userMenu"
+                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ user.username }}
+                     {{ user.full_name }}
+              </a>
+            {% if user.is_admin == True %}
+                 <a class="btn btn-primary" href="{% url 'panel:admin' %}">پنل</a>
+            {% elif user.is_staff == True %}
+                <a class="btn btn-primary" href="{% url 'panel:staff' %}">پنل</a>
+            {% else %}
+                <a class="btn btn-primary " href="{% url 'panel:customer' %}">پنل</a>
+            {% endif %}
 
-<!--{#                {% if user.is_authenticated %}#}-->
-                    <ul class="navbar-nav ml-auto mx-5 " >
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-danger" href="#" id="userMenu"
-                             role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px">
-<!--                              {{ user.username }}-->
-                          </a>
-                          <ul class="dropdown-menu " aria-labelledby="userMenu">
-                            <li><a class="dropdown-item aligned-left" href="http://127.0.0.1:8000/admin/">ادمین</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><hr class="dropdown-divider"></li>
-{#                            <li><a class="dropdown-item aligned-left" href="#">Change password</a></li>#}
-{#                            <li><hr class="dropdown-divider"></li>#}
-{#                            <li><a class="dropdown-item " href="#">Log Out</a></li>#}
-                          </ul>
-                        </li>
-                     </ul>
-{#                {% else %}#}
+        {% else %}
+        <form class="form-inline ml-auto" style="margin-right: 100px">
+                <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary" style="margin-left: 10px">ورود</a>
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary ml-3" style="margin-left: 10px">ثبت نام</a>
+        </form>
+        {% endif %}
+    </div>
+</nav>
 
-{#                {% endif %}#}
+
             </div>
 
                 <a class="navbar-brand mx-5" href="#"  >فروشگاه کتاب آنلاین</a>
-{#                    {% if user.is_authenticated %}#}
                         <ul class="navbar-nav mr-auto px-4">
                         </ul>
-{#                    {% endif %}#}
-
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -77,7 +76,7 @@
                 <span class="navbar-toggler-icon"></span></button>
 
 
-            <form class="form-inline mt-2 mt-md-0" action="{% url 'product:search_results' %}" method="get" style="margin-right: 50px">
+            <form class="form-inline mt-2 mt-md-0" action="{% url 'product:search_results' %}" method="get" style="margin-left: 50px">
             <div class="search-input input-group " >
             <input type="text" role="search" name="q" id="SearchTerm" class="form-control ui-autocomplete-input" placeholder="نام کتاب ، نام نویسنده و ..." autocomplete="off">
                 <span class="input-group-btn">
@@ -90,21 +89,11 @@
 
 
             <div class="collapse navbar-collapse" id="navbarCollapse" >
-                    <form class="form-inline ml-auto" style="margin-right: 100px">
-                        <a href="#" class="btn btn-outline-secondary" style="margin-left: 10px">ورود</a>
-                        <a href="#" class="btn btn-primary ml-3" style="margin-left: 10px">ثبت نام</a>
-                    </form>
-{#                {% endif %}#}
-
-
-
-
 
                <a id="btnCart" href="{% url 'basket:basket_detail' %}" class="btn btn-info  pull-left">
                  <span class="hidden-xs">سبد خرید شما</span>
                     {% with total_items=basket|length %}
                     {% if total_items > 0 %}
-{#                    {{ total_items }}{{ total_items|pluralize }}, تومان{{ basket.get_total_price }}#}
                     {{ total_items }}, تومان{{ basket.get_total_price }}
                     {% else %}
                     خالی است
@@ -113,14 +102,12 @@
                  <i class="fas fa-shopping-cart fa-2x"></i>
                </a>
 
+
             </div>
         </nav>
 
 
 
-{#    <div class="container" id="sidebar" style="margin-top: 10px">#}
-{#<div style="margin-top: 10px">#}
-{#<header class="sticky-top my-0">#}
     <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
         <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
             <li class="nav-item m-1 text-white p-3" >دسته بندی:</li>
@@ -134,8 +121,7 @@
             {% endfor %}
         </ul>
      </nav>
-{#    </div>#}
-{#</header>#}
+
         <div class="container">
             {% block content %}
             {% endblock content %}

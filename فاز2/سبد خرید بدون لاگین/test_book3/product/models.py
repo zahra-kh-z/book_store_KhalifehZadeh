@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import uuid
+from django.conf import settings
 
 
 # Create your models here.
@@ -10,6 +11,7 @@ class Category(models.Model):
     """type category for books"""
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cat_user')
 
     class Meta:
         ordering = ('name',)

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}دسته بندی ها{% endblock title %}
+{% block content %}
+    {% for discount in object_list %}
+        <div class="card">
+            <div class="card-header">
+                <span class="font-weight-bold">{{ discount.type_discount }}</span> &middot;
+                <span class="text-muted"> {{ discount.amount }} |
+                {{ discount.percent }}</span>
+            </div>
+            <div class="card-body">
+                {{ discount.active }}
+            </div>
+
+            <div class="card-footer text-center text-muted">
+                <a href="{% url 'panel:discount_edit' discount.pk %}">Edit</a> |
+                <a href="{% url 'panel:discount_delete' discount.pk %}">Delete</a>
+            </div>
+
+        </div>
+        <br />
+    {% endfor %}
+{% endblock content %}

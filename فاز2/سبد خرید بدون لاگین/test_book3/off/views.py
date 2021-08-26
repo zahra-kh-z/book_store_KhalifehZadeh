@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 from .models import DiscountCode,Discount
 from .forms import DiscountCodeApplyForm
-
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
 
@@ -24,3 +24,7 @@ def off_code_apply(request):
             request.session['off_code_id'] = None
     return redirect('basket:basket_detail')
 
+class DiscountDetailView(DetailView):  # new
+    model = Discount
+    template_name = 'panel/discount_detail.html'
+    login_url = 'login'  # new

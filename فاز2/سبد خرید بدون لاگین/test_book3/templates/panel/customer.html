@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+  {% if request.user.is_authenticated %}
+      {{ user.full_name }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
+        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
+             <a class="nav-item nav-link active" href="{% url 'accounts:dashboard' %}">سفارش ها </a>
+             <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">سفارش </a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری </a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:addresses' %}">آدرس </a>
+        </ul>
+     </nav>
+
+
+
+
+
+{% endblock %}

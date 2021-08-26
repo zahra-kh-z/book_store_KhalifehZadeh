@@ -29,6 +29,8 @@ urlpatterns = [
     path('off/', include('off.urls', namespace='off')),
     path('', include('product.urls', namespace='product')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('panel/', include('panel.urls', namespace='panel')),
 
 ]
 

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+  {% if request.user.is_authenticated and is_admin == False %}
+      {{ user.full_name }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<a class="nav-item nav-link active" href="{% url 'panel:my_time' %}">تاریخ شمسی</a>
+    {% if my_t %}
+        {{ my_t }}
+    {% endif %}
+
+    <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
+        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
+             <a class="nav-item nav-link active" href="{% url 'panel:book_list' %}">کتاب</a>
+             <a class="nav-item nav-link active" href="{% url 'panel:category_list' %}">دسته بندی</a>
+             <a class="nav-item nav-link active" href="{% url 'panel:discount_list' %}">تخفیف</a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری</a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:register' %}">ثبت نام کاربر</a>
+        </ul>
+     </nav>
+
+
+
+{% endblock %}

@@ -30,6 +30,7 @@ Checkout
 <form method="post" class="order-form">
 {#{{ form.as_p }}#}
     {{ form|crispy }}
+    <a class="nav-item nav-link active" href="{% url 'accounts:addresses' %}">آدرس </a>
 <br>
     <p><input type="submit" value="ثبت" class="btn btn-primary height-auto btn-sm"></p>
 {% csrf_token %}
