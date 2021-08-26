@@ -35,6 +35,8 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 گزارش سفارشات و تعداد کل سفارشات 
 
+تعداد سفارشات به ازای هر روز
+
 دکمه دانلود سفارشات روز جاری
 
 درآمد کلی سایت تا کنون

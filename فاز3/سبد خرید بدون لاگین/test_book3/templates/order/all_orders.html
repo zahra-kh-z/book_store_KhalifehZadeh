@@ -14,13 +14,21 @@
     <button class="btn btn-info " type="submit"><a class="text-dark text-decoration-none" href="{% url 'orders:tasks_json_list' %}" download>دانلود سفارشات روز جاری</a></button>
 <br>
 
-{%  if orders_count %}
-    تعداد کل سفارشات: {{ orders_count }}
-    {% endif %}
+    تعداد سفارش ها به ازای هر روز:
+<br>
+{%  for r in  ord_by_date %}
+  {{ r }}<br>
+{% endfor %}
+<br>
 
-    <br>
-    درآمد کلی سایت:
-    {{ total }}
+<br>
+    {%  if orders_count %}
+تعداد کل سفارشات:    {{ orders_count }}
+{% endif %}
+
+<br>
+درآمد کلی سایت:
+{{ total }}
 
       {% for a in orders %}
            <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ a.status }}</a>

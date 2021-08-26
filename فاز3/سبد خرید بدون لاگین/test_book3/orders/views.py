@@ -5,7 +5,7 @@ from .forms import OrderCreateForm
 from basket.basket import Basket
 from django.contrib.auth.decorators import login_required
 from .models import *
-
+from django.db.models import Count
 
 # Create your views here.
 
@@ -47,9 +47,11 @@ def all_orders(request):
     orders_count = Invoice.objects.all().count()
     mony = Invoice.objects.all()
     total = sum(product.get_total_cost() for product in mony)
+    ord_by_date = Invoice.objects.extra({'created': "date(created)"}).values('created').annotate(count=Count('id'))
     return render(request,
                   'order/all_orders.html',
                   {'orders': orders, 'orders_count': orders_count,
                    'mony': mony,
                    'total':total,
+                   'ord_by_date': ord_by_date,
                    })
