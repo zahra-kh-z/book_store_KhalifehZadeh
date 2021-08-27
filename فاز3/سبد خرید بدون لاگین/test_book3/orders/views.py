@@ -11,11 +11,16 @@ from django.db.models import Count
 
 @login_required
 def order_create(request):
+    addr = Address.objects.filter(user=request.user)
     basket = Basket(request)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)
+        # form = OrderCreateForm(request.POST)
+        form = OrderCreateForm(request.user, request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
+            # order = form.save()
             for item in basket:
                 InvoiceItem.objects.create(order=order,
                                            product=item['product'],
@@ -28,10 +33,11 @@ def order_create(request):
                           'order/created.html',
                           {'order': order})
     else:
-        form = OrderCreateForm()
+        # form = OrderCreateForm()
+        form = OrderCreateForm(request.user)
     return render(request,
                   'order/create.html',
-                  {'basket': basket, 'form': form})
+                  {'basket': basket, 'form': form, "addr": addr,})
 
 
 @login_required

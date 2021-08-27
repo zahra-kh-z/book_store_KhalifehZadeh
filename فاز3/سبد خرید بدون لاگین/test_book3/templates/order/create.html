@@ -31,6 +31,15 @@ Checkout
 {#{{ form.as_p }}#}
     {{ form|crispy }}
     <a class="nav-item nav-link active" href="{% url 'accounts:addresses' %}">آدرس </a>
+
+    {#<select name="address" class="select" id="id_address">#}
+{#    <option value="" selected="">---------</option>#}
+{#      {% for item in addr %}#}
+{#           <option value="address">{{ item }}</option>#}
+{#        {{ item }}<br>#}
+{#    {% endfor %}#}
+{#</select>#}
+
 <br>
     <p><input type="submit" value="ثبت" class="btn btn-primary height-auto btn-sm"></p>
 {% csrf_token %}
