@@ -11,6 +11,16 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.user_register, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('all_users/', views.all_users, name='all_users'),
+
+    # reports
+    path('reports/', views.reports, name='reports'),
+
+    # for add staff by admin
+    path('add_staff/', views.register_staff, name='add_staff'),
+
+    # change_password
+    path('change_password/', views.change_password, name='change_password'),
 
     path("profile/edit/", views.edit_details, name="edit_details"),
     path("profile/delete_user/", views.delete_user, name="delete_user"),
@@ -39,7 +49,7 @@ urlpatterns = [
         name="pwdreset",
     ),
     path(
-        "password_reset_confirm/<uidb64>/",
+        "password_reset_confirm/<uidb64>/<token>",
         auth_views.PasswordResetConfirmView.as_view(
             template_name="account/password_reset/password_reset_confirm.html",
             success_url="password_reset_complete/",

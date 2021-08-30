@@ -23,7 +23,7 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 فاز3:
 
-پنل مشتری - احرازهویت - تاریخجه سفارشات بر اساس تاریخ - ویرایش پروفایل
+ پنل مشتری - احرازهویت - تاریخجه سفارشات بر اساس تاریخ - ویرایش پروفایل و تغییر پسورد
 
 ورود - ثبت نام - فراموشی پسورد
 
@@ -41,6 +41,8 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 درآمد کلی سایت تا کنون
 
-تعداد کتاب های تخفیف دار و بدون تخفیف 
+تعداد کتاب های تخفیف دار و بدون تخفیف
+
+تعداد کل کاربران و تعداد کاربران به ازای هر روز
 
 list_filter, list_display, search_fields, list_editable,prepopulated_fields, inlines

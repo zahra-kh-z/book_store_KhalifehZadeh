@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}گزارش ها{% endblock %}
+
+{% block content %}
+
+    <h3>تاریخ شمسی:  {{ my_t }}</h3>
+  <div class="col-12 mt-4">
+    <h1 class="h2">گزارشات</h1>
+  </div>
+  <div class="col-12 d-flex justify-content-between">
+    <div>گزارشات مربوط به محصولات، کاربران و سفارشات</div>
+  </div>
+  <hr />
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="background: dodgerblue">
+    <div class="col" >
+       <a href="{% url 'orders:all_orders' %}" class="text-reset text-decoration-none" role="button" style="max-width: 540px;">
+      <div class="card mb-3" style="background: aqua">
+        <div class="row g-0">
+          <div class="col-2 position-relative">
+              <i class="fas fa-shopping-cart fa-2x position-absolute top-50 start-50 translate-middle" width="30" height="30" ></i>
+
+          </div>
+          <div class="col-10">
+            <div class="card-body ps-0 ps-md-1">
+              <h1 class="h5 px-3">سفارش ها</h1>
+            <div class="px-3">
+                     {%  if orders_count %}
+                تعداد کل سفارشات:    {{ orders_count }}
+                    {% endif %}
+
+                    <br>
+                    درآمد کلی سایت:
+                    {{ total }}
+                    <br>
+                  تعداد سفارش ها به ازای هر روز:
+                    <br>
+                    {%  for r in  ord_by_date %}
+                      {{ r }}<br>
+                    {% endfor %}
+                    <br>
+
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <div class="col" >
+      <a href="{% url "accounts:all_users" %}" class="text-reset text-decoration-none" role="button" style="max-width: 540px;">
+      <div class="card mb-3" style="background: aqua">
+        <div class="row g-0">
+          <div class="col-2 position-relative">
+              <i class="fas fa-users fa-2x position-absolute top-50 start-50 translate-middle" width="30" height="30" ></i>
+          </div>
+          <div class="col-10">
+            <div class="card-body ps-0 ps-md-1">
+              <h1 class="h5 px-3">کاربران</h1>
+              <div class="px-3">
+                {%  if users_count %}
+            تعداد کل کاربران:    {{ users_count }}
+                {% else %}
+                   کاربری ثبت نشده است.
+                {% endif %}
+                    <br>
+                 تعداد کاربران به ازای هر روز:
+                <br>
+                {%  for r in  users_by_date %}
+                  {{ r }}<br>
+                {% endfor %}
+                <br><br>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="{% url "panel:book_by_off" %}" class="text-reset text-decoration-none" role="button" style="max-width: 540px;">
+      <div class="card mb-3" style="background: aqua">
+        <div class="row g-0">
+          <div class="col-2 position-relative">
+              <i class="fas fa-book fa-2x position-absolute top-50 start-50 translate-middle" width="30" height="30" ></i>
+          </div>
+
+          <div class="col-10">
+            <div class="card-body ps-0 ps-md-1">
+              <h1 class="h5 px-3">تخفیف محصولات</h1>
+                <div class="px-3">
+                            تعدا کتاب با تخفیف نقدی:
+                    {{ book_count_a }}
+                         <br>
+                                تعداد کتاب با تخفیف درصدی:
+                    {{ book_count_p }}
+                         <br>
+                                   تعداد کتاب بدون تخفیف:
+                    {{ book_count_no }}
+                         <br><br><br>
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    
+  </div>
+
+{% endblock %}

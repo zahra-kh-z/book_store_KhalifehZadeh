@@ -8,7 +8,8 @@ class User(AbstractBaseUser):
     full_name = models.CharField(max_length=100)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_staffs = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
     objects = MyUserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
@@ -17,15 +18,17 @@ class User(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?Yes, always"
         return True
 
     def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?Yes, always"
         return True
 
     @property
     def is_staff(self):
-        # return self.is_admin
-        return f'{self.is_admin}_{self.full_name}'
+        "Is the user a member of staff?All admins are staff"
+        return self.is_admin
 
 
 import uuid

@@ -9,23 +9,29 @@
 {% endblock %}
 
 {% block content %}
+            {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
 
-        <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
-        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
-             <a class="nav-item nav-link active" href="{% url 'accounts:dashboard' %}">سفارش ها </a>
-             <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">سفارش </a>
-             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری</a>
-        </ul>
-     </nav>
-
-
-      {% for a in orders %}
-           <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ a.status }}</a>
-        {{ a.status }}
-        {{ a.user }}
-        {{ a.created }}
+    <section class="bg-light p-3 m-3 text-center">
+<table style="border-collapse:collapse; margin: 30px auto; ">
+<thead>
+    <tr>
+        <th>کاربر</th>
+        <th>زمان ایجاد</th>
+        <th>وضعیت</th>
+    </tr>
+</thead>
+<tbody>
+     {% for ord in orders %}
+        <tr>
+            <td>{{ord.user|title }}</td>
+            <td>{{ ord.created }}</td>
+            <td><a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ ord.status }}</a></td>
+        </tr>
     {% endfor %}
-
+</tbody>
+</table>
+</section>
 
 
 {% endblock %}

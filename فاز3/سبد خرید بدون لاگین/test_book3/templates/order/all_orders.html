@@ -9,10 +9,21 @@
 {% endblock %}
 
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
 
 <br>
     <button class="btn btn-info " type="submit"><a class="text-dark text-decoration-none" href="{% url 'orders:tasks_json_list' %}" download>دانلود سفارشات روز جاری</a></button>
 <br>
+
+    <br>
+{%  if orders_count %}
+تعداد کل سفارشات:    {{ orders_count }}
+{% endif %}
+
+<br>
+درآمد کلی سایت:
+{{ total }}<br>
 
     تعداد سفارش ها به ازای هر روز:
 <br>
@@ -20,23 +31,32 @@
   {{ r }}<br>
 {% endfor %}
 <br>
+{%  for t in  total_by_date %}
+  {{ t }}<br>
+{% endfor %}
 
-<br>
-    {%  if orders_count %}
-تعداد کل سفارشات:    {{ orders_count }}
-{% endif %}
 
-<br>
-درآمد کلی سایت:
-{{ total }}
 
-      {% for a in orders %}
-           <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ a.status }}</a>
-        {{ a.status }}
-        {{ a.user }}
-        {{ a.created }}
+<section class="bg-light p-3 m-3 text-center">
+<table style="border-collapse:collapse; margin: 30px auto; ">
+<thead>
+    <tr>
+        <th>کاربر</th>
+        <th>زمان ایجاد</th>
+        <th>وضعیت</th>
+    </tr>
+</thead>
+<tbody>
+     {% for ord in orders %}
+        <tr>
+            <td>{{ord.user|title }}</td>
+            <td>{{ ord.created }}</td>
+            <td><a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ ord.status }}</a></td>
+        </tr>
     {% endfor %}
-
+</tbody>
+</table>
+</section>
 
 
 {% endblock %}

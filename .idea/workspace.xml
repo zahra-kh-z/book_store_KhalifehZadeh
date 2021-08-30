@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="تعداد سفارشات به ازای هر روز">
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="fix user address">
+      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/static/css/book_list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/accounts/all_users.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/accounts/change_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/accounts/report.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/sub_base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/orders/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/orders/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/password_reset_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/password_reset_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/reset_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/account/password_reset/reset_status.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/all_orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/all_orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/discount_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/discount_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/ords.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/panel/ords.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,15 +44,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/فاز2/سبد خرید بدون لاگین/test_book3/orders" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/static" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\static" />
+      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates\accounts" />
+      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز2\سبد خرید بدون لاگین\test_book3\orders" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز2\سبد خرید بدون لاگین\test_book3\templates\panel" />
-      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز2\سبد خرید بدون لاگین\test_book3\templates\order" />
-      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز2\سبد خرید بدون لاگین\test_book3\templates" />
-      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز2\سبد خرید بدون لاگین\test_book3" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -58,7 +77,11 @@
       <workItem from="1629478069320" duration="598000" />
       <workItem from="1629495808094" duration="162000" />
       <workItem from="1629936311559" duration="2979000" />
-      <workItem from="1629970784313" duration="17044000" />
+      <workItem from="1629970784313" duration="18352000" />
+      <workItem from="1630066513891" duration="4489000" />
+      <workItem from="1630181673620" duration="151000" />
+      <workItem from="1630185770506" duration="3451000" />
+      <workItem from="1630243745239" duration="11085000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -186,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630010864949</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix user address">
+      <created>1630023272046</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1630023272046</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +248,7 @@
     <MESSAGE value="فاز3" />
     <MESSAGE value="convert json to excel for orders report" />
     <MESSAGE value="تعداد سفارشات به ازای هر روز" />
-    <option name="LAST_COMMIT_MESSAGE" value="تعداد سفارشات به ازای هر روز" />
+    <MESSAGE value="fix user address" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix user address" />
   </component>
 </project>

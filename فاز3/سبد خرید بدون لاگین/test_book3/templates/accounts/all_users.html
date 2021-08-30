@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    تعداد کاربران به ازای هر روز:
+<br>
+{%  for r in  users_by_date %}
+  {{ r }}<br>
+{% endfor %}
+<br>
+
+<br>
+    {%  if users_count %}
+تعداد کل کاربران:    {{ users_count }}
+        {% else %}
+       کاربری ثبت نشده است.
+
+{% endif %}
+
+    <br>
+
+
+{% endblock %}

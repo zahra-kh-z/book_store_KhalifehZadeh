@@ -46,9 +46,9 @@
                   {{ user.username }}
                      {{ user.full_name }}
               </a>
-            {% if user.is_admin == True %}
+            {% if user.is_admin %}
                  <a class="btn btn-primary" href="{% url 'panel:admin' %}">پنل</a>
-            {% elif user.is_staff == True %}
+            {% elif user.is_staffs %}
                 <a class="btn btn-primary" href="{% url 'panel:staff' %}">پنل</a>
             {% else %}
                 <a class="btn btn-primary " href="{% url 'panel:customer' %}">پنل</a>

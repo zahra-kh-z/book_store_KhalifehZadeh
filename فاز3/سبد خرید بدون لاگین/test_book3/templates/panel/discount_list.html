@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}دسته بندی ها{% endblock title %}
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
 
-            <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
-        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
-             <a class="nav-item nav-link active" href="{% url 'panel:book_list' %}">کتاب</a>
-             <a class="nav-item nav-link active" href="{% url 'panel:category_list' %}">دسته بندی</a>
-             <a class="nav-item nav-link active" href="{% url 'panel:discount_list' %}">تخفیف</a>
-             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری</a>
-        </ul>
-     </nav>
     <br>
       <br>
     <a class=" btn btn-primary" href="{% url 'panel:discount_new' %}">تخفیف جدید</a>
+    <a class=" btn btn-primary" href="{% url 'panel:book_by_off' %}">گزارش تخفیف</a>
     <br><br>
+
 
         تعدا کتاب با تخفیف نقدی:
 {{ book_count_a }}
@@ -25,24 +21,33 @@
 {{ book_count_no }}
      <br>
 
+            <section class="bg-light p-3 m-3 text-center">
+        <table style="border-collapse:collapse; margin: 30px auto; ">
+        <thead>
+            <tr>
+                <th>نوع تخفیف</th>
+                <th>مقدار نقدی</th>
+                <th>مقدار درصدی</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+             {% for discount in object_list %}
+                <tr>
+                        <td>{{ discount.type_discount }}</td>
+                        <td>{{ discount.amount }}</td>
+                        <td>{{ discount.percent }}</td>
+                        <td>{{ discount.active }}</td>
+                        <td>
+                           <a class="text-decoration-none" href="{% url 'panel:discount_edit' discount.pk %}">ویرایش</a> |
+                            <a class="text-decoration-none" href="{% url 'panel:discount_delete' discount.pk %}">حذف</a> |
+                            <a class="text-decoration-none"  href="{% url 'panel:discount_detail' discount.pk %}">جزئیات</a>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </section>
 
-    {% for discount in object_list %}
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">{{ discount.type_discount }}</span> &middot;
-                <span class="text-muted"> {{ discount.amount }} |
-                {{ discount.percent }}</span>
-            </div>
-            <div class="card-body">
-                {{ discount.active }}
-            </div>
-
-            <div class="card-footer text-center text-muted">
-                <a href="{% url 'panel:discount_edit' discount.pk %}">Edit</a> |
-                <a href="{% url 'panel:discount_delete' discount.pk %}">Delete</a>
-            </div>
-
-        </div>
-        <br />
-    {% endfor %}
 {% endblock content %}
