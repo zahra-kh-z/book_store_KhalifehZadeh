@@ -232,12 +232,14 @@ class DiscountCodeDetailView(LoginRequiredMixin, DetailView):  # new
     login_url = 'login'  # new
 
 
+from off.forms import CodeForm
 class DiscountCodeCreateView(UserPassesTestMixin, CreateView):  # new
     model = DiscountCode
     template_name = 'panel/discountcode/discountcode_new.html'
-    # fields = ('name', 'price', 'author',)
-    fields = '__all__'
-    login_url = 'login'  # new
+    # fields = '__all__'  # if not use forms.py
+    login_url = 'login'
+    form_class = CodeForm  # new
+    success_url = reverse_lazy('panel:discountcode_list')  # new
 
     def form_valid(self, form):  # new
         form.instance.author = self.request.user
