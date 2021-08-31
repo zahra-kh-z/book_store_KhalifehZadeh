@@ -122,6 +122,9 @@ class Invoice(models.Model):
         total = sum(item.price_off() for item in self.items.all())
         return total
 
+    def get_items(self):
+        return self.items.all()
+
     # @staticmethod
     # def get_orders_by_customer(customer_id):
     #     return Invoice.objects.filter(customer=customer_id).order_by('-created')

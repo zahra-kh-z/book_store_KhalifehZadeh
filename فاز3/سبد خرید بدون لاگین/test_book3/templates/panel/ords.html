@@ -11,21 +11,31 @@
 {% block content %}
             {% load static %}
     <link rel="stylesheet" href={% static 'css/book_list.css' %}>
-
     <section class="bg-light p-3 m-3 text-center">
 <table style="border-collapse:collapse; margin: 30px auto; ">
 <thead>
     <tr>
+        <th>شماره سفارش</th>
         <th>کاربر</th>
+        <th>جزئیات سفارش</th>
         <th>زمان ایجاد</th>
+        <th>آدرس</th>
         <th>وضعیت</th>
     </tr>
 </thead>
 <tbody>
      {% for ord in orders %}
         <tr>
+            <td>{{ord.id }}</td>
             <td>{{ord.user|title }}</td>
+            <td>
+                {% for item in ord.get_items %}
+                    کتاب:{{ item.product }}, تعداد:{{ item.quantity }}
+                    <br>
+                {% endfor %}
+            </td>
             <td>{{ ord.created }}</td>
+            <td>{{ord.address }}</td>
             <td><a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">{{ ord.status }}</a></td>
         </tr>
     {% endfor %}

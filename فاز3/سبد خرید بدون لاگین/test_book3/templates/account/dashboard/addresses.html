@@ -1,8 +1,6 @@
 {% extends "../sub_base.html" %}
 {% block title %}Edit Addresses{% endblock %}
 
-
-
 {% block sub_content %}
 <h1 class="h2">آدرس های ثبت شده</h1>
 <div>ویرایش آدرس های ثبت شده:</div>
@@ -12,29 +10,28 @@
      <a href="{% url "accounts:add_address" %}" class="text-reset text-decoration-none btn btn-primary mb-2" role="button">
           <h1 class="h5">+ ثبت آدرس جدید</h1>
       </a>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
 
     {% for address in addresses %}
-    <div class="col">
-      <div class="card pb-3">
-        <div class="card-header bg-white small text-muted">
+    <div class="col"  >
+      <div class="card pb-3" style="background: gold">
+        <div class="card-header bg-info small text-width" >
           {% if address.default %}
-            Default 
+            آدرس پیش فرض
           {% endif %}
           &nbsp;
         </div>
-        <div class="card-body small pb-1">
-          <p class="card-text m-0 fw-bold">{{address.full_name}}</p>
-          <p class="card-text m-0">{{address.address_line}}</p>
-          <p class="card-text m-0">{{address.town_city}}</p>
-          <p class="card-text m-0">{{address.postcode}}</p>
-          <p class="card-text m-0">Phone number: {{address.phone}}</p>
-          <div class="pt-5">
-            <a href="{% url 'accounts:edit_address' address.id %}" class="text-decoration-none">Edit</a>
-            |
-            <a href="{% url 'accounts:delete_address' address.id %}" class="text-decoration-none">Delete</a>
+        <div class="card-body small pb-1" >
+          <p class="card-text m-0 fw-bold">نام کامل: {{address.full_name}}</p>
+          <p class="card-text m-0">آدرس: {{address.address_line}}</p>
+          <p class="card-text m-0">شهر: {{address.town_city}}</p>
+          <p class="card-text m-0">کدپستی: {{address.postcode}}</p>
+          <p class="card-text m-0">شماره تلفن: {{address.phone}}</p>
+          <div class="pt-5" >
+           <a href="{% url 'accounts:edit_address' address.id %}" class="text-decoration-none">ویرایش</a>|
+            <a href="{% url 'accounts:delete_address' address.id %}" class="text-decoration-none">حذف</a>
             {% if not address.default %}
-            | <a href="{% url 'accounts:set_default' address.id %}" class="text-decoration-none">Set Default</a>
+            | <a href="{% url 'accounts:set_default' address.id %}" class="text-decoration-none">پیش فرض</a>
             {% endif %}
           </div>
         </div>

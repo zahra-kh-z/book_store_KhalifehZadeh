@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}کدهای تخفیف{% endblock title %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
+
+    <br>
+      <br>
+    <a class=" btn btn-primary" href="{% url 'panel:discountcode_new' %}">کد تخفیف جدید</a>
+    <br><br>
+
+            <section class="bg-light p-3 m-3 text-center">
+        <table style="border-collapse:collapse; margin: 30px auto; ">
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>مقدار</th>
+                <th>وضعیت</th>
+                <th>تاریخ انقضا</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+             {% for discount in object_list %}
+                <tr>
+                        <td>{{ discount.code }}</td>
+                        <td>{{ discount.discount }}</td>
+                        <td>{{ discount.active }}</td>
+                        <td>{{ discount.valid_to }}</td>
+                        <td>
+                           <a class="text-decoration-none" href="{% url 'panel:discountcode_edit' discount.pk %}">ویرایش</a> |
+                            <a class="text-decoration-none" href="{% url 'panel:discountcode_delete' discount.pk %}">حذف</a> |
+                            <a class="text-decoration-none"  href="{% url 'panel:discountcode_detail' discount.pk %}">جزئیات</a>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </section>
+
+{% endblock content %}

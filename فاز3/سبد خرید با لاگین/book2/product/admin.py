@@ -7,6 +7,7 @@ admin.site.register(Inventory)
 admin.site.register(Discount)
 admin.site.register(DiscountCode)
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
@@ -15,10 +16,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class ProductAdmin(admin.ModelAdmin):
-    search_fields = ["title", "author"]
-    # field = '__all__'
-    list_display = ['title','slug', 'label', 'price','create_date', 'available']
-    list_filter = ['label', 'create_date', 'category']
-    list_editable = ['price', 'available', 'label']
-    prepopulated_fields = {'slug': ('title',)}
-
+    list_display = ['name', 'slug', 'price', 'discount_book', 'inventory', 'available', 'created', 'updated', 'label']
+    search_fields = ['name', "author"]
+    list_filter = ['available', 'created', 'updated', 'label']
+    list_editable = ['price', 'available', 'label', 'inventory']
+    prepopulated_fields = {'slug': ('name',)}

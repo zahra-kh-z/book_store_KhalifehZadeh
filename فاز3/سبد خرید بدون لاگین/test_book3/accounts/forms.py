@@ -100,6 +100,11 @@ class UserAddressForm(forms.ModelForm):
             {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
         )
 
+        self.fields['full_name'].label = "نام کامل"
+        self.fields['phone'].label = "شماره تلفن"
+        self.fields['address_line'].label = "آدرس"
+        self.fields['town_city'].label = "شهر"
+        self.fields['postcode'].label = "کدپستی"
 
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 

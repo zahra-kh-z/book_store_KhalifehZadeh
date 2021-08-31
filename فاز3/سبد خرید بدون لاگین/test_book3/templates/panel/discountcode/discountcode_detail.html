@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="article-entry">
+        <h2>{{ object.code}}</h2>
+        <p> {{ object.discount }} | {{ object.active }}</p>
+        <p>{{ object.valid_to }}</p>
+    </div>
+    <p><a href="{% url 'panel:discountcode_edit' object.pk %}">Edit</a> |
+    <a href="{% url 'panel:discountcode_delete' object.pk %}">Delete</a></p>
+    <p>Back to <a href="{% url 'panel:discountcode_list' %}">All category</a>.</p>
+{% endblock content %}

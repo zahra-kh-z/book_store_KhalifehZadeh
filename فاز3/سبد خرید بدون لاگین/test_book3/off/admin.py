@@ -9,12 +9,16 @@ class DiscountCodeAdmin(admin.ModelAdmin):
                     'discount', 'active']
     list_filter = ['active', 'valid_from', 'valid_to']
     search_fields = ['code']
+    list_editable = ['valid_from', 'valid_to', 'discount', 'active']
 
 
 # admin.site.register(Discount)
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
     list_display = ['type_discount', 'amount', 'percent', 'book_name', 'book_price', 'book_offs']
+    list_filter = ['type_discount']
+    list_editable = ['amount', 'percent']
+    search_fields = ['type_discount']
 
     def book_name(self, obj):
         all_book = obj.book.all()

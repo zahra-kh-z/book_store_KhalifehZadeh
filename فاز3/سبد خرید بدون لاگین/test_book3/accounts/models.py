@@ -14,6 +14,10 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
 
+    class Meta:
+        verbose_name = "کاربر"
+        verbose_name_plural = "کاربران"
+
     def __str__(self):
         return self.email
 
@@ -53,8 +57,31 @@ class Address(models.Model):
     default = models.BooleanField(_("Default"), default=False)
 
     class Meta:
-        verbose_name = "Address"
-        verbose_name_plural = "Addresses"
+        verbose_name = "آدرس"
+        verbose_name_plural = "آدرس ها"
 
     def __str__(self):
         return f'{self.user}__{self.town_city}'
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=128)
+    members = models.ManyToManyField(User, related_name='groups')
+
+    class Meta:
+        verbose_name = "گروه"
+        verbose_name_plural = "گروه ها"
+
+    def __str__(self):
+        return self.name
+
+
+class Membership(models.Model):
+    person = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = "عضو"
+        verbose_name_plural = "اعضا"

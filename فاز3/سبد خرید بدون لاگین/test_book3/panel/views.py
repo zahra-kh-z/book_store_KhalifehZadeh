@@ -8,9 +8,10 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from product.models import *
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin  # new
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # new
 from django.core.exceptions import PermissionDenied  # new
 from off.models import *
+from persiantools.jdatetime import JalaliDateTime
 
 
 # Create your views here.
@@ -35,10 +36,12 @@ class BookListView(LoginRequiredMixin, ListView):  # new
     template_name = 'panel/book_list.html'
     login_url = 'login'  # new
 
+
 class BookTableListView(LoginRequiredMixin, ListView):  # new
     model = Book
     template_name = 'panel/datatable.html'
     login_url = 'login'  # new
+
 
 class BookDetailView(LoginRequiredMixin, DetailView):  # new
     model = Book
@@ -46,7 +49,7 @@ class BookDetailView(LoginRequiredMixin, DetailView):  # new
     login_url = 'login'  # new
 
 
-class BookCreateView(LoginRequiredMixin, CreateView):  # new
+class BookCreateView(UserPassesTestMixin, CreateView):  # new
     model = Book
     template_name = 'panel/book_new.html'
     # fields = ('name', 'price', 'author',)
@@ -57,8 +60,11 @@ class BookCreateView(LoginRequiredMixin, CreateView):  # new
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class BookUpdateView(LoginRequiredMixin, UpdateView):  # new
+
+class BookUpdateView(UserPassesTestMixin, UpdateView):  # new
     model = Book
     # fields = ('title', 'body',)
     fields = '__all__'
@@ -71,8 +77,11 @@ class BookUpdateView(LoginRequiredMixin, UpdateView):  # new
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class BookDeleteView(LoginRequiredMixin, DeleteView):  # new
+
+class BookDeleteView(UserPassesTestMixin, DeleteView):  # new
     model = Book
     template_name = 'panel/book_delete.html'
     success_url = reverse_lazy('panel:book_list')
@@ -83,6 +92,9 @@ class BookDeleteView(LoginRequiredMixin, DeleteView):  # new
         if obj.user != self.request.user:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.is_staffs
 
 
 # category
@@ -98,7 +110,7 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):  # new
     login_url = 'login'  # new
 
 
-class CategoryCreateView(LoginRequiredMixin, CreateView):  # new
+class CategoryCreateView(UserPassesTestMixin, CreateView):  # new
     model = Category
     template_name = 'panel/category_new.html'
     # fields = ('name', 'price', 'author',)
@@ -109,8 +121,11 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):  # new
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class CategoryUpdateView(LoginRequiredMixin, UpdateView):  # new
+
+class CategoryUpdateView(UserPassesTestMixin, UpdateView):  # new
     model = Category
     # fields = ('title', 'body',)
     fields = '__all__'
@@ -123,8 +138,11 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):  # new
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class CategoryDeleteView(LoginRequiredMixin, DeleteView):  # new
+
+class CategoryDeleteView(UserPassesTestMixin, DeleteView):  # new
     model = Category
     template_name = 'panel/category_delete.html'
     success_url = reverse_lazy('panel:category_list')
@@ -136,6 +154,8 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):  # new
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
 
 # discount
@@ -151,7 +171,7 @@ class DiscountDetailView(LoginRequiredMixin, DetailView):  # new
     login_url = 'login'  # new
 
 
-class DiscountCreateView(LoginRequiredMixin, CreateView):  # new
+class DiscountCreateView(UserPassesTestMixin, CreateView):  # new
     model = Discount
     template_name = 'panel/discount_new.html'
     # fields = ('name', 'price', 'author',)
@@ -162,8 +182,11 @@ class DiscountCreateView(LoginRequiredMixin, CreateView):  # new
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class DiscountUpdateView(LoginRequiredMixin, UpdateView):  # new
+
+class DiscountUpdateView(UserPassesTestMixin, UpdateView):  # new
     model = Discount
     # fields = ('title', 'body',)
     fields = '__all__'
@@ -176,12 +199,18 @@ class DiscountUpdateView(LoginRequiredMixin, UpdateView):  # new
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+    def test_func(self):
+        return self.request.user.is_staffs
 
-class DiscountDeleteView(LoginRequiredMixin, DeleteView):  # new
+
+class DiscountDeleteView(UserPassesTestMixin, DeleteView):  # new
     model = Discount
     template_name = 'panel/discount_delete.html'
     success_url = reverse_lazy('panel:discount_list')
     login_url = 'login'  # new
+
+    def test_func(self):
+        return self.request.user.is_staffs
 
     # def dispatch(self, request, *args, **kwargs):  # new
     #     obj = self.get_object()
@@ -190,11 +219,65 @@ class DiscountDeleteView(LoginRequiredMixin, DeleteView):  # new
     #     return super().dispatch(request, *args, **kwargs)
 
 
-from persiantools.jdatetime import JalaliDateTime
+# discount code
+class DiscountCodeListView(LoginRequiredMixin, ListView):  # new
+    model = DiscountCode
+    template_name = 'panel/discountcode/discountcode_list.html'
+    login_url = 'login'  # new
+
+
+class DiscountCodeDetailView(LoginRequiredMixin, DetailView):  # new
+    model = DiscountCode
+    template_name = 'panel/discountcode/discountcode_detail.html'
+    login_url = 'login'  # new
+
+
+class DiscountCodeCreateView(UserPassesTestMixin, CreateView):  # new
+    model = DiscountCode
+    template_name = 'panel/discountcode/discountcode_new.html'
+    # fields = ('name', 'price', 'author',)
+    fields = '__all__'
+    login_url = 'login'  # new
+
+    def form_valid(self, form):  # new
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        return self.request.user.is_staffs
+
+
+class DiscountCodeUpdateView(UserPassesTestMixin, UpdateView):  # new
+    model = DiscountCode
+    # fields = ('title', 'body',)
+    fields = '__all__'
+    template_name = 'panel/discountcode/discountcode_edit.html'
+    login_url = 'login'  # new
+
+    def dispatch(self, request, *args, **kwargs):  # new
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.is_staffs
+
+
+class DiscountCodeDeleteView(UserPassesTestMixin, DeleteView):  # new
+    model = DiscountCode
+    template_name = 'panel/discountcode/discountcode_delete.html'
+    success_url = reverse_lazy('panel:discountcode_list')
+    login_url = 'login'  # new
+
+    def test_func(self):
+        return self.request.user.is_staffs
+
+
 def my_time(request):
-   # my_t = JalaliDateTime.now().to_gregorian()
-   my_t = JalaliDateTime.now()
-   return render(request, 'panel/admin.html', {'my_t': my_t })
+    # my_t = JalaliDateTime.now().to_gregorian()
+    my_t = JalaliDateTime.now()
+    return render(request, 'panel/admin.html', {'my_t': my_t})
 
 
 def book_by_off(request):

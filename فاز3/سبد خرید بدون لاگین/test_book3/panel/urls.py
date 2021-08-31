@@ -34,6 +34,13 @@ urlpatterns = [
     path('discount/<int:pk>/edit/', DiscountUpdateView.as_view(), name='discount_edit'),  # new
     path('discount/<int:pk>/delete/', DiscountDeleteView.as_view(), name='discount_delete'),  # new
 
+    # discount code
+    path('discountcode_list/', DiscountCodeListView.as_view(), name='discountcode_list'),
+    path('discountcode/<int:pk>/', DiscountCodeDetailView.as_view(), name='discountcode_detail'),  # new
+    path('discountcode/new/', DiscountCodeCreateView.as_view(), name='discountcode_new'),  # new
+    path('discountcode/<int:pk>/edit/', DiscountCodeUpdateView.as_view(), name='discountcode_edit'),  # new
+    path('discountcode/<int:pk>/delete/', DiscountCodeDeleteView.as_view(), name='discountcode_delete'),  # new
+
     # تاریخ شمسی
     path('time/', my_time, name='my_time'),
 

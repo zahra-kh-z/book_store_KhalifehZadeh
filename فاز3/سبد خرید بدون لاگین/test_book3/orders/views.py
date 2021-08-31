@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.db.models import Count
 
+
 # Create your views here.
 
 @login_required
@@ -22,12 +23,17 @@ def order_create(request):
             order.save()
             # order = form.save()
             for item in basket:
-                InvoiceItem.objects.create(order=order,
-                                           product=item['product'],
-                                           price=item['price'],
-                                           quantity=item['quantity'],
-                                           user_id=request.user.id,
-                                           )
+                order_item = InvoiceItem.objects.create(order=order,
+                                                        product=item['product'],
+                                                        price=item['price'],
+                                                        quantity=item['quantity'],
+                                                        user_id=request.user.id,
+                                                        )
+                products = Book.objects.get(id=order_item.product_id)
+                if products.inventory > order_item.quantity:
+                    products.inventory = int(order_item.product.inventory - order_item.quantity)
+                products.save()
+
             basket.clear()
             return render(request,
                           'order/created.html',
@@ -37,7 +43,7 @@ def order_create(request):
         form = OrderCreateForm(request.user)
     return render(request,
                   'order/create.html',
-                  {'basket': basket, 'form': form, "addr": addr,})
+                  {'basket': basket, 'form': form, "addr": addr, })
 
 
 @login_required
@@ -58,6 +64,6 @@ def all_orders(request):
                   'order/all_orders.html',
                   {'orders': orders, 'orders_count': orders_count,
                    'mony': mony,
-                   'total':total,
+                   'total': total,
                    'ord_by_date': ord_by_date,
                    })
