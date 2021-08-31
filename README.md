@@ -39,6 +39,8 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 دکمه دانلود سفارشات روز جاری
 
+دکمه دانلود کل سفارش ها
+
 درآمد کلی سایت تا کنون
 
 تعداد کتاب های تخفیف دار و بدون تخفیف
@@ -46,3 +48,5 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 تعداد کل کاربران و تعداد کاربران به ازای هر روز
 
 list_filter, list_display, search_fields, list_editable,prepopulated_fields, inlines
+
+export_as_csv admin model, add actions, diccount_actions

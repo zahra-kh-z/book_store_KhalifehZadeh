@@ -8,5 +8,6 @@ urlpatterns = [
     path('user_orders/', views.user_orders, name='user_orders'),
     path('all_orders/', views.all_orders, name='all_orders'),
 
-    path("tasks_json/", TaskList.as_view(), name="tasks_json_list"),
+    path("orders_excel_list/", OrdersList.as_view(), name="orders_excel_list"),
+    path("all_orders_json/", AllOrdersList.as_view(), name="all_orders_json"),
 ]

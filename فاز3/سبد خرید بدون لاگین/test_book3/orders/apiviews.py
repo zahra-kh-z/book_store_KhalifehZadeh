@@ -9,7 +9,7 @@ from .serializers import TaskSerializer
 import pandas as pd
 
 
-class TaskList(APIView):
+class OrdersList(APIView):
     """
     get request from user and save data from serializer to json,
     then show all order to user with APIView.
@@ -38,7 +38,22 @@ class TaskList(APIView):
         return Response(pd.DataFrame(json_file).to_excel("excel.xlsx"))
 
 
-class TaskDetail(APIView):
+class AllOrdersList(APIView):
+    """
+    get request from user and save data from serializer to json,
+    then show all order to user with APIView.
+    """
+
+    def get(self, request):
+        """for json file"""
+        now = datetime.now().day
+        # tasks = Invoice.objects.all()[:20]
+        tasks = Invoice.objects.all()
+        data = TaskSerializer(tasks, many=True).data
+        return Response(data)
+
+
+class OrdersDetail(APIView):
     """get request from user with pk and save data from serializer to json,
     then show details one task to user with APIView."""
 

@@ -1,7 +1,29 @@
 from django.contrib import admin
+from .models import Category, Book, Inventory
+import csv
+from django.http import HttpResponse
+
 
 # Register your models here.
-from .models import Category, Book, Inventory
+
+
+class ExportCsvMixin:
+    def export_as_csv(self, request, queryset):
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        for obj in queryset:
+            row = writer.writerow([getattr(obj, field) for field in field_names])
+
+        return response
+
+    export_as_csv.short_description = "Export Selected"
+
 
 # admin.site.register(Inventory)
 @admin.register(Inventory)
@@ -39,3 +61,16 @@ class ProductAdmin(admin.ModelAdmin):
     # list_editable = ['_price', 'available', 'label']
     list_editable = ['price', 'available', 'label']
     prepopulated_fields = {'slug': ('name',)}
+    actions = ["unmark_available", "mark_available", 'charge_inventory', 'decharge_inventory', "export_as_csv"]
+
+    def unmark_available(self, request, queryset):
+        queryset.update(available=False)
+
+    def mark_available(self, request, queryset):
+        queryset.update(available=True)
+
+    def charge_inventory(self, request, queryset):
+        queryset.update(inventory=90)
+
+    def decharge_inventory(self, request, queryset):
+        queryset.update(inventory=0)
