@@ -9,7 +9,7 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 - اسکرین شات از خروجی سایت
 
-- اضافه کردن محصول بهسبد خرید بدون لاگین با استفاده از session
+- اضافه کردن محصول به سبد خرید بدون لاگین با استفاده از session
 
 - اضافه کردن محصول به سبد خرید با لاگین کاربر
 

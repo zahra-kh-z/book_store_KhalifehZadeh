@@ -4,10 +4,26 @@
     <p>ورود کاربر</p>
 
         {% load crispy_forms_tags %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+           {{ message }}
+    </div>
+    {% endfor %}
+
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" class="btn btn-primary mt-2" value="Login">
         <a href="{% url 'accounts:pwdreset' %}" class="btn btn-primary mt-2" >forget password</a>
     </form>
+
+
+<script>
+setTimeout(function(){
+    if ($('.alert').length > 0) {
+        $('.alert').remove();
+    }
+}, 2000)    // 2000 millisecond
+</script>
 {% endblock %}

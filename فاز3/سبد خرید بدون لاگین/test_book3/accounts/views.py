@@ -33,10 +33,10 @@ def user_login(request):
             user = authenticate(request, email=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                messages.success(request, 'you logged in successfully', 'success')
+                messages.success(request, 'ورود با موفقیت انجام شد.', 'success')
                 return redirect('product:product_list')
             else:
-                messages.error(request, 'username or password is wrong', 'danger')
+                messages.error(request, 'ایمیل یا پسورد اشتباه است.', 'danger')
     else:
         form = UserLoginForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -44,7 +44,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    messages.success(request, 'you logged out successfully', 'success')
+    messages.success(request, 'خروج با موفقیت انجام شد.', 'success')
     return redirect('product:product_list')
 
 
@@ -56,7 +56,7 @@ def user_register(request):
             # user = User.objects.create_user(cd['email'], cd['full_name'], cd['password'])
             user = User.objects.create_user(cd['email'], cd['user_name'], cd['password'])
             user.save()
-            messages.success(request, 'you registered successfully', 'success')
+            messages.success(request, 'ثبت نام با موفقیت انجام شد.', 'success')
             return redirect('product:product_list')
     else:
         form = UserRegistrationForm()
@@ -72,7 +72,7 @@ def register_staff(request):
             # user.is_admin=True
             user.is_staffs = True
             user.save()
-            messages.success(request, 'you registered successfully', 'success')
+            messages.success(request, 'ثبت نام با موفقیت انجام شد.', 'success')
             return redirect('product:product_list')
     else:
         form = UserRegistrationForm()
