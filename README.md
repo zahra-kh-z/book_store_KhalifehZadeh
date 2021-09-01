@@ -50,3 +50,8 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 list_filter, list_display, search_fields, list_editable,prepopulated_fields, inlines
 
 export_as_csv admin model, add actions, diccount_actions
+
+optimize queries in Django admin
+
+TestCase for apps
+
