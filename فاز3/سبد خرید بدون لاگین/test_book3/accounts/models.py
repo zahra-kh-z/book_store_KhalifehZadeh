@@ -59,6 +59,7 @@ class User(AbstractBaseUser):
 class Address(models.Model):
     """
     Address for all user
+    multi address for customer. one of them is primary for register
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

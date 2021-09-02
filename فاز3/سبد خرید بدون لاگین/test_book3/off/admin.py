@@ -12,7 +12,6 @@ class DiscountCodeAdmin(admin.ModelAdmin):
     list_editable = ['valid_from', 'valid_to', 'discount', 'active']
 
 
-# admin.site.register(Discount)
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
     list_display = ['type_discount', 'amount', 'percent', 'book_name', 'book_price', 'book_offs']
@@ -31,7 +30,6 @@ class DiscountAdmin(admin.ModelAdmin):
     def book_offs(self, obj):
         all_book = obj.book.all()
 
-        # total = 0
         price_dis = []
         for book in all_book:
 

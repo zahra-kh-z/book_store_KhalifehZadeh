@@ -4,15 +4,6 @@ from django.db.models import Q
 
 
 # Create your models here.
-# from orders.models import Invoice
-
-
-# from django.contrib.auth.models import User
-# class Customer(models.Model):
-#     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=200, null=True, blank=True)
-#     email = models.CharField(max_length=200, null=True, blank=True)
-
 
 class Customer(models.Model):
     """information of customer"""
@@ -23,7 +14,6 @@ class Customer(models.Model):
     phone = models.CharField(max_length=24, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    # code_off = models.CharField(max_length=50, unique=True, blank=True, null=True)
 
     class Meta:
         verbose_name = 'مشتری'

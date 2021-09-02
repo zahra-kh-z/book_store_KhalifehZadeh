@@ -1,13 +1,15 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from django.forms import ModelForm, DateTimeField
-from off.MinimalSplitDateTimeMultiWidget import *
-from django.contrib.admin import widgets
-from .models import DiscountCode
 
 
 class DiscountCodeApplyForm(forms.Form):
     code = forms.CharField(label=_('کدتخفیف'))
+
+
+from django.forms import ModelForm, DateTimeField
+from off.MinimalSplitDateTimeMultiWidget import *
+from django.contrib.admin import widgets
+from .models import DiscountCode
 
 
 class DateInput(forms.DateInput):
