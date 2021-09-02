@@ -5,10 +5,11 @@ from django.http import HttpResponse
 
 
 # Register your models here.
-
-
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
+        """
+        It is used to download orders as a  csv file.
+        """
         meta = self.model._meta
         field_names = [field.name for field in meta.fields]
 
@@ -31,8 +32,9 @@ class InvoiceItemInline(admin.TabularInline):
 
 
 @admin.register(Invoice)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'status', 'first_name', 'last_name', 'email', 'address', 'paid', 'created', 'updated', ]
+class OrderAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ['id', 'status', 'first_name', 'last_name', 'email', 'address',
+                    'paid', 'created', 'updated']
     list_filter = ['status', 'created', 'updated']
     inlines = [InvoiceItemInline]
     list_editable = ['status', 'email', 'address', 'paid']

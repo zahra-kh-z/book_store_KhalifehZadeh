@@ -1,28 +1,30 @@
 from django.db import models
 from product.models import *
 from off.models import DiscountCode, Discount
-from accounts.models import Address
 from django.conf import settings
+from accounts.models import Address
+
 
 # Create your models here.
-
-
 class Invoice(models.Model):
+    """for Orders of users"""
     STATUS_CHOICES = (('Pending', 'سفارش'), ('Delivered', 'ثبت شده'))
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order_user')
-    # customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='customer_ord')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    # ordered = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    address = models.ForeignKey(Address, on_delete=models.DO_NOTHING, related_name='addr_ord', blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+
     # email for order not be unique
     # email = models.EmailField(unique=True, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    # address = models.CharField(max_length=250)
-    address = models.ForeignKey(Address, on_delete=models.DO_NOTHING, related_name='addr_ord', blank=True, null=True)
+    # ordered = models.BooleanField(default=False)
+    # customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, related_name='customer_ord')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # total_price = models.BigIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ('-created',)  # ordering by the created field
@@ -34,19 +36,26 @@ class Invoice(models.Model):
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
-        # total_cost = sum(item.get_cost() for item in self.items.all())
-        # return total_cost - total_cost * (self.discount / Decimal(100))
+
+    def get_items(self):
+        return self.items.all()
+
+    def get_edit_url(self):
+        return reverse('basket:basket_detail', kwargs={'pk': self.id})
+
+    # def get_orders_by_customer(self):
+    #     orders = Invoice.objects.filter(user=self.user_id).order_by('-created')
+    #     return orders
 
 
 class InvoiceItem(models.Model):
+    """for Items of Order"""
     order = models.ForeignKey(Invoice, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Book, related_name='order_items', on_delete=models.CASCADE)
     price = models.BigIntegerField(default=0)
-    # price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # ordered = models.BooleanField(default=False)
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'سفارش'
