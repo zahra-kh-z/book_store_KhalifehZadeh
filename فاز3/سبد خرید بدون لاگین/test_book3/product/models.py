@@ -1,12 +1,13 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 import uuid
-from django.conf import settings
 
+
+# from django_extensions.db.fields import AutoSlugField
 
 # Create your models here.
-
-
 class Category(models.Model):
     """type category for books"""
     name = models.CharField(max_length=200, db_index=True)
@@ -23,42 +24,31 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('product:product_list_by_category', args=[self.slug])
-        # return reverse('product:product_list_by_category', args=[self.id])
 
 
 class Book(models.Model):
     """for register feature of book"""
     LABEL = (('New', 'جدید'), ('BestSeller', 'پرفروش'))
-
-    """
-    بعد از تکمیل کد، اتریبیوت uuid جایگزین شود
-    """
-    # id = models.UUIDField(primary_key=True, db_index=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='book_user')
     label = models.CharField(choices=LABEL, max_length=12)
     name = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, blank=True, null=True)
     author = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    # price = models.BigIntegerField(default=0)
     price = models.BigIntegerField(default=0)
     unit_price = models.BigIntegerField(default=0)
-
-    # _price = models.BigIntegerField(db_column="price", default=0)
-    # price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ManyToManyField(Category, related_name='books_cat')
-    # category = models.ForeignKey(Category, related_name='books_cat', on_delete=models.CASCADE)
-    # picture = models.ImageField(upload_to='picture/', blank=True, null=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     available = models.BooleanField(default=True)
-
     discount_book = models.FloatField(blank=True, null=True, default=0)
-
-    # discount = models.FloatField(blank=True, null=True, default=0)
-    # discount = models.ManyToManyField(Discount, related_name='book_off', blank=True, null=True, default=0)
     inventory = models.IntegerField(default=0)
     can_backorder = models.BooleanField(default=False)
+
+    # id = models.UUIDField(primary_key=True, db_index=True, default=uuid.uuid4, editable=False)
+    # discount = models.ManyToManyField(Discount, related_name='book_off', blank=True, null=True, default=0)
+    # slug = AutoSlugField(null=True, default=None, unique=True, populate_from='name', db_index=True)
 
     class Meta:
         verbose_name = 'کتاب'
@@ -69,31 +59,14 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        """for save slug automatic"""
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('product:product_detail', args=[self.id, self.slug])
-
-    # @property
-    # def price(self):
-    #     price = Book.objects.get(pk=id)
-    #     price.price = 90
-    #     price.save()
-    #     # return self._price
-    #
-    # @price.setter
-    # def price(self):
-    #     # if value > 2:
-    #     self._price = 90
-
-    # def get_absolute_url2(self):
-    #     return reverse('product:product_list', args=[self.id, self.slug])
-    #
-    # def get_add_to_cart_url(self):
-    #     # return reverse("product:add-to-cart", kwargs={"pk": self.pk})
-    #     return reverse("product:add-to-cart", kwargs={"slug": self.slug})
-    #
-    # def get_remove_from_cart_url(self):
-    #     # return reverse("product:remove-from-cart", kwargs={"pk": self.pk})
-    #     return reverse("product:remove-from-cart", kwargs={'slug': self.slug})
 
     @property
     def can_order(self):
@@ -127,11 +100,6 @@ class Book(models.Model):
         return self.inventory
 
 
-
-"""
-برای محصولات شگفت انگیز و پرفروش از این مدل استفاده کن
-ارتباط با محصول را چک کن (یه جایی ارور داشت ولی خودش رفع شد)
-"""
 class Inventory(models.Model):
     """for num of book in inventory"""
 

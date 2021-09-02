@@ -43,6 +43,7 @@ class BookTests(TestCase):
             slug='boook'
         )
 
+    #
     def test_book_listing(self):
         self.assertEqual(f'{self.book.name}', 'python')
         self.assertEqual(f'{self.book.author}', 'django')

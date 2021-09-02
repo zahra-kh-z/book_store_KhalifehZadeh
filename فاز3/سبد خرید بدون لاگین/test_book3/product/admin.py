@@ -5,8 +5,6 @@ from django.http import HttpResponse
 
 
 # Register your models here.
-
-
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
         meta = self.model._meta
@@ -25,7 +23,6 @@ class ExportCsvMixin:
     export_as_csv.short_description = "Export Selected"
 
 
-# admin.site.register(Inventory)
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ['book_name', 'count_use', 'cont_new']
@@ -53,14 +50,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Book)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'price', 'discount_book', 'available', 'created', 'updated', 'label']
+class ProductAdmin(admin.ModelAdmin, ExportCsvMixin):
+    list_display = ['name', 'slug', 'price', 'discount_book', 'inventory', 'available', 'created', 'updated', 'label']
     search_fields = ['name', "author"]
     # field = '__all__'
     list_filter = ['available', 'created', 'updated', 'label']
-    # list_editable = ['_price', 'available', 'label']
-    list_editable = ['price', 'available', 'label']
+    list_editable = ['price', 'available', 'label', 'inventory']
     prepopulated_fields = {'slug': ('name',)}
+    # change_form_template = 'custom_change_form.html'
     actions = ["unmark_available", "mark_available", 'charge_inventory', 'decharge_inventory', "export_as_csv"]
 
     def unmark_available(self, request, queryset):
@@ -74,3 +71,8 @@ class ProductAdmin(admin.ModelAdmin):
 
     def decharge_inventory(self, request, queryset):
         queryset.update(inventory=0)
+
+# https://stackoverflow.com/questions/53616273/how-to-add-custom-action-button-in-django-admin-form-and-post-the-information
+# https://books.agiliq.com/projects/django-admin-cookbook/en/latest/action_buttons.html
+# class ProductAdmin(admin.ModelAdmin):
+#     change_form_template = 'custom_change_form.html'

@@ -40,8 +40,13 @@ class DiscountAdmin(admin.ModelAdmin):
             else:
                 total = int(book.price)
             book.unit_price = book.price
-            book.discount_book = total
-            book.price = total
+
+            if total > 0:
+                book.discount_book = total
+                book.price = total
+            else:
+                book.discount_book = 0
+                book.price = 0
 
             book.save()
         return book.discount_book

@@ -6,8 +6,11 @@ from basket.forms import BasketAddProductForm
 
 
 # Create your views here.
-
 def product_list(request, category_slug=None):
+    """
+    for show list all book by category
+    and for bestseller book in home page
+    """
     category = None
     categories = Category.objects.all()
     products = Book.objects.filter(available=True)
@@ -24,6 +27,9 @@ def product_list(request, category_slug=None):
 
 
 def product_detail(request, id, slug):
+    """
+    for go to book details by id and slug
+    """
     product = get_object_or_404(Book, id=id,
                                 slug=slug,
                                 available=True)
@@ -36,10 +42,20 @@ def product_detail(request, id, slug):
 
 
 class SearchResultsListView(ListView):
+    """
+    for search a book by ame and author
+    A Q object (django.db.models.Q) is an object used to encapsulate a collection of keyword arguments.
+    These keyword arguments are specified as in “Field lookups” above.
+    take the user's search query, represented by q in the URL, and pass it in.
+    # https://learndjango.com/tutorials/django-search-tutorial
+    # https://docs.djangoproject.com/en/3.1/topics/db/queries/#complex-lookups-with-q-objects
+
+    """
+
     model = Book
     template_name = 'product/search_results.html'
 
-    def get_queryset(self):  # new
+    def get_queryset(self):
         query = self.request.GET.get('q')
         return Book.objects.filter(
             Q(name__icontains=query)
