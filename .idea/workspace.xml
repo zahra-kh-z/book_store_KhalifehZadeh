@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add message with time">
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add comments for accounts app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,15 +22,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SocialNetworkBook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\off" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates\panel" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\static" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates\accounts" />
-      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -63,7 +63,7 @@
       <workItem from="1630347302660" duration="12880000" />
       <workItem from="1630412949212" duration="900000" />
       <workItem from="1630427189039" duration="10751000" />
-      <workItem from="1630521758744" duration="4618000" />
+      <workItem from="1630521758744" duration="5667000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -240,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630528119280</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add comments for accounts app">
+      <created>1630541720173</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1630541720173</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +286,7 @@
     <MESSAGE value="add more actions to admin panel" />
     <MESSAGE value="add TestCase" />
     <MESSAGE value="add message with time" />
-    <option name="LAST_COMMIT_MESSAGE" value="add message with time" />
+    <MESSAGE value="add comments for accounts app" />
+    <option name="LAST_COMMIT_MESSAGE" value="add comments for accounts app" />
   </component>
 </project>
