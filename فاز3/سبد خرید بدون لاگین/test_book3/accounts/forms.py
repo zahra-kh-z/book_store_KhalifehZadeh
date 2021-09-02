@@ -1,6 +1,8 @@
 from django import forms
-from .models import User
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from .models import User
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from .models import Address
 
 
 class UserCreationForm(forms.ModelForm):
@@ -37,12 +39,13 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'login-email', 'placeholder': 'email', }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class UserRegistrationForm(forms.ModelForm):
-    user_name = forms.CharField(
+    full_name = forms.CharField(
         label='Enter Username', min_length=4, max_length=50, help_text='Required')
     email = forms.EmailField(max_length=100, help_text='Required', error_messages={
         'required': 'Sorry, you will need an email'})
@@ -52,14 +55,14 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('user_name', 'email',)
+        fields = ('full_name', 'email',)
 
     def clean_username(self):
-        user_name = self.cleaned_data['user_name'].lower()
-        r = User.objects.filter(user_name=user_name)
+        full_name = self.cleaned_data['full_name'].lower()
+        r = User.objects.filter(full_name=full_name)
         if r.count():
             raise forms.ValidationError("Username already exists")
-        return user_name
+        return full_name
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -74,8 +77,16 @@ class UserRegistrationForm(forms.ModelForm):
                 'Please use another Email, that is already taken')
         return email
 
-
-from .models import Address
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['full_name'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'full_name'})
+        self.fields['email'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'E-mail', 'name': 'email', 'id': 'id_email'})
+        self.fields['password'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Repeat Password'})
 
 
 class UserAddressForm(forms.ModelForm):
@@ -106,7 +117,14 @@ class UserAddressForm(forms.ModelForm):
         self.fields['town_city'].label = "شهر"
         self.fields['postcode'].label = "کدپستی"
 
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+
+class PwdResetConfirmForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label='New password', widget=forms.PasswordInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
+    new_password2 = forms.CharField(
+        label='Repeat password', widget=forms.PasswordInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
 
 
 class PwdResetForm(PasswordResetForm):
@@ -122,28 +140,45 @@ class PwdResetForm(PasswordResetForm):
         return email
 
 
-class PwdResetConfirmForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label='New password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
-    new_password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
-
-
 class UserEditForm(forms.ModelForm):
     email = forms.EmailField(
-        label='Account email (can not be changed)', max_length=200, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}))
+        label='بهتر است ایمیل خود را تغییر ندهید', max_length=200, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', }))
 
     full_name = forms.CharField(label='full_name', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
         fields = ('email', 'full_name',)
-        # fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].required = True
         self.fields['full_name'].required = True
+
+
+"""
+test forms for create custom staff
+"""
+
+
+class StaffSignUpForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_staff
+        if commit:
+            user.save()
+        return user
+
+
+class StaffCreationForm(forms.ModelForm):
+    """
+    A Custom form for creating new staffs.
+    """
+
+    class Meta:
+        model = User
+        fields = ['full_name', 'email']

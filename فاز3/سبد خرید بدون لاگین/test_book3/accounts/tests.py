@@ -1,7 +1,6 @@
 from django.test import TestCase
-from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.urls import reverse, resolve
+from django.urls import reverse
 
 
 # Create your tests here.
@@ -50,18 +49,17 @@ class SignupTests(TestCase):
             self.response, 'not be on the page.')
 
 
-from django.test import TestCase
-
-
 class LogInTest(TestCase):
     def setUp(self):
         User = get_user_model()
         self.credentials = {
-            'email': 'zahra@gmail.com',
-            'full_name': 'zahra_user',
+            'email': 'testuser@gmail.com',
+            'full_name': 'testuser',
             'password': '123456'}
         User.objects.create_user(**self.credentials)
 
     def test_login(self):
         # send login data
         response = self.client.post('/login/', self.credentials, follow=True)
+        # should be logged in now
+        # self.assertTrue(response.context['user'].is_active)

@@ -1,13 +1,11 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserCreationForm, UserChangeForm
-from .models import User, Address, Membership
-from django.contrib.auth.models import Group
+from .models import *
 
 
 class UserAddressInline(admin.StackedInline):
     model = Address
-    extra = 1
+    extra = 0
 
 
 @admin.register(User)
@@ -33,7 +31,10 @@ class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ()
 
 
-@admin.register(Address)
+# admin.site.register(User, UserAdmin)
+# admin.site.unregister(Group)
+
+
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'town_city', 'address_line', 'default']
     list_filter = ['town_city', 'full_name']
@@ -48,6 +49,12 @@ class MembershipInline(admin.TabularInline):
 
 class GroupAdmin(admin.ModelAdmin):
     inlines = (MembershipInline,)
+    list_display = ('name',)
 
 
 admin.site.register(Group, GroupAdmin)
+
+"""for show all users by 3 levels: customer, staff, admin"""
+# admin.site.register(Customer)
+# admin.site.register(Staffs)
+# admin.site.register(Admin)

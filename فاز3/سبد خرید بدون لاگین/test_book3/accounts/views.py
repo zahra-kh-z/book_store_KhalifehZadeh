@@ -1,31 +1,31 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
 from accounts.forms import UserEditForm
 from orders.views import user_orders
 from .forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 from .models import User
 from .models import Address
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import UserAddressForm
-
+from django.contrib.auth import login
+from django.views.generic import CreateView
+from .forms import StaffSignUpForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
 from orders.views import Invoice
 from django.db.models import Count
 from persiantools.jdatetime import JalaliDateTime
 from product.models import Book
 from off.models import Discount
 
+"""______ all method for user ______"""
+
 
 def user_login(request):
+    """for login with email and password"""
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -43,34 +43,19 @@ def user_login(request):
 
 
 def user_logout(request):
+    """for logout users"""
     logout(request)
     messages.success(request, 'خروج با موفقیت انجام شد.', 'success')
     return redirect('product:product_list')
 
 
 def user_register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            # user = User.objects.create_user(cd['email'], cd['full_name'], cd['password'])
-            user = User.objects.create_user(cd['email'], cd['user_name'], cd['password'])
-            user.save()
-            messages.success(request, 'ثبت نام با موفقیت انجام شد.', 'success')
-            return redirect('product:product_list')
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'accounts/register.html', {'form': form})
-
-
-def register_staff(request):
+    """for register all users"""
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             user = User.objects.create_user(cd['email'], cd['full_name'], cd['password'])
-            # user.is_admin=True
-            user.is_staffs = True
             user.save()
             messages.success(request, 'ثبت نام با موفقیت انجام شد.', 'success')
             return redirect('product:product_list')
@@ -81,15 +66,14 @@ def register_staff(request):
 
 @login_required
 def dashboard(request):
+    """show all activity of users, for see this page user should be login"""
     orders = user_orders(request)
-    return render(request,
-                  'panel/ords.html',
-                  {
-                      'orders': orders})
+    return render(request, 'panel/ords.html', {'orders': orders})
 
 
 @login_required
 def edit_details(request):
+    """for edit info of users, for see this page user should be login"""
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
 
@@ -102,7 +86,22 @@ def edit_details(request):
                   'account/dashboard/edit_details.html', {'user_form': user_form})
 
 
+@login_required
+def delete_user(request):
+    """
+    This method is used to delete the user.
+    But the user is not deleted completely. The user is inactivate.
+    Only the administrator is allowed to reactivate the user.
+    """
+    user = User.objects.get(email=request.user.email)
+    user.is_active = False
+    user.save()
+    logout(request)
+    return redirect('accounts:delete_user')
+
+
 def change_password(request):
+    """for change password by user, should be login"""
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -111,7 +110,7 @@ def change_password(request):
             messages.success(request, 'پسورد با موفقیت آپدیت شد.')
             return redirect('accounts:login')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'لطفا خطاهای زیر را اصلاح کنید.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/change_password.html', {
@@ -119,41 +118,32 @@ def change_password(request):
     })
 
 
-@login_required
-def delete_user(request):
-    # user = User.objects.get(address__addr_ord__user_id=request.user)
-    user = User.objects.get(email=request.user.email)
-    # کاربر غیرفعال میشود.برای حذف کامل باید ریموو کرد
-    # ادمین میتواند کاربر فعال را فعال کند.
-    user.is_active = False
-    user.save()
-    logout(request)
-    return redirect('account:delete_confirmation')
-
-
 def all_users(request):
+    """for count all users, all users by date,
+     for report to admin panel.
+     """
     users_count = User.objects.filter(is_staffs=False, is_admin=False).count()
     from django.db.models import Count
     users_by_date = User.objects.filter(is_staffs=False, is_admin=False).extra({'created': "date(created)"}).values(
         'created').annotate(count=Count('id'))
 
-    return render(request,
-                  'accounts/all_users.html',
-                  {
-                      'users_count': users_count,
-                      'users_by_date': users_by_date,
-                  })
+    return render(request, 'accounts/all_users.html',
+                  {'users_count': users_count, 'users_by_date': users_by_date, })
 
 
-# Addresses
+"""______ all methode for Addresses ______"""
+
+
 @login_required
 def view_address(request):
+    """show all user address"""
     addresses = Address.objects.filter(user=request.user)
     return render(request, "account/dashboard/addresses.html", {"addresses": addresses})
 
 
 @login_required
 def add_address(request):
+    """add address for user"""
     if request.method == "POST":
         address_form = UserAddressForm(data=request.POST)
         if address_form.is_valid():
@@ -168,8 +158,9 @@ def add_address(request):
 
 @login_required
 def edit_address(request, id):
+    """for edit info of address by user"""
     if request.method == "POST":
-        address = Address.objects.get(pk=id, customer=request.user)
+        address = Address.objects.get(pk=id, user=request.user)
         address_form = UserAddressForm(instance=address, data=request.POST)
         if address_form.is_valid():
             address_form.save()
@@ -182,18 +173,77 @@ def edit_address(request, id):
 
 @login_required
 def delete_address(request, id):
+    """delete address by user, but one address remain"""
     address = Address.objects.filter(pk=id, user=request.user, default=False).delete()
     return redirect("accounts:addresses")
 
 
 @login_required
 def set_default(request, id):
+    """Selects an address as the default address for sending the order. """
     Address.objects.filter(user=request.user, default=True).update(default=False)
     Address.objects.filter(pk=id, user=request.user).update(default=True)
     return redirect("accounts:addresses")
 
 
+@login_required
+def user_addr(request):
+    """
+    for show all address of a user
+    but if you want default address, should filter query by default field.
+    we use default address in form for orders.
+    """
+    addr = Address.objects.filter(user=request.user)
+    return render(request, "order/create.html'", {"addr": addr})
+
+
+"""______ all methode for register staff ______"""
+
+
+class StaffSignUpView(CreateView):
+    """
+    for register a staff.
+    but we use below method for register staff by admin.
+    """
+    model = User
+    form_class = StaffSignUpForm
+    template_name = 'accounts/register.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['is_staff'] = True
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('panel:staff')
+
+
+def register_staff(request):
+    """
+    In this method, only the manager can register an employee.
+    """
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = User.objects.create_user(cd['email'], cd['full_name'], cd['password'])
+            user.is_staffs = True
+            user.save()
+            messages.success(request, 'ثبت نام با موفقیت انجام شد.', 'success')
+            return redirect('product:product_list')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'accounts/register.html', {'form': form})
+
+
+"""______ methode for panel admin reports ______"""
+
+
 def reports(request):
+    """
+    In this method, reports related to orders, users, JalaliDateTime and book discounts are specified.
+    """
     # orders
     orders = Invoice.objects.all()
     orders_count = Invoice.objects.all().count()
