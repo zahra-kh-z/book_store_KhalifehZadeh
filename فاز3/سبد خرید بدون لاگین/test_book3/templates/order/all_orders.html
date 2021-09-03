@@ -13,7 +13,7 @@
     <link rel="stylesheet" href={% static 'css/book_list.css' %}>
 
 <br>
-    <button class="btn btn-info " type="submit"><a class="text-dark text-decoration-none" href="{% url 'orders:tasks_json_list' %}" download>دانلود سفارشات روز جاری</a></button>
+    <button class="btn btn-info " type="submit"><a class="text-dark text-decoration-none" href="{% url 'orders:orders_excel_list' %}" download>دانلود سفارشات روز جاری</a></button>
 <br>
 
     <br>
@@ -34,6 +34,7 @@
 {%  for t in  total_by_date %}
   {{ t }}<br>
 {% endfor %}
+{#<br>#}
 
 
 <section class="bg-light p-3 m-3 text-center">

@@ -7,6 +7,8 @@
 
 
 {% block content %}
+
+
   <h1>لیست سبد خرید:</h1>
 
     <div class="site-section">
@@ -34,6 +36,7 @@
       {% for item in basket %}
         {% with product=item.product %}
 
+
           <tr>
           <td class="product-count">{{forloop.counter}}</td>
             <td class="product-thumbnail">
@@ -56,9 +59,8 @@
             </td>
 
             <td class="num">{{ item.product.unit_price }}</td>
-            <td class="num">{{ item.product.discount_book }}</td>
+           <td class="num">{{ item.product.discount_book }}</td>
             <td class="num">{{ item.total_price }}   </td>
-
            <td>
               <form action="{% url "basket:basket_remove" product.id %}" method="post">
                 <input  class="btn btn-primary height-auto btn-sm" type="submit" value="حذف">
@@ -68,16 +70,14 @@
 
             <!-- remove sabt -->
                 <td>
-
                   <a
                     href="#"
                     class="click_sabt btn btn-primary height-auto btn-sm">ثبت</a>
-
                     <script>
                         $(".click_sabt").click(function(event) {
                             if ({{product.inventory}} > {{ 0 }} && {{item.quantity}} < {{product.inventory}}) {
-                                {#print({{ product.inventory }})#}
-                            {{ product.remove_items_from_inventory }}
+{#                            {{ product.remove_items_from_inventory }}#}
+{#                            {{item.reduce_inventory }}#}
                                 alert('سفارش ثبت شد');
 
                             } else {
@@ -87,13 +87,7 @@
 
                         })
                     </script>
-{#                 {{ order_item.item.remove_items_from_inventory }}#}
-{#                    {% else %}#}
-{#                     no book#}
-{#                    <script>#}
-{#                    alert('The task is duplicate or empty.');#}
-{#                    </script>#}
-{#                     {% endif %}#}
+
                 </td>
               <td class="product-name">
                   <h2 class="h5 text-black">{{ order_item.ordered }}</h2>
@@ -103,10 +97,7 @@
                 </td>
                 <!-- end remove sabt  -->
 
-
           </tr>
-
-
 
 
         {% endwith %}
@@ -116,7 +107,7 @@
 <tr class="subtotal">
 <td>قبل از تخفیف</td>
 <td colspan="4"></td>
-<td class="num">${{ basket.get_total_price|floatformat:2 }}</td>
+<td class="num">تومان{{ basket.get_total_price|floatformat:2 }}</td>
 </tr>
 <tr>
 <td>
@@ -125,7 +116,7 @@
 </td>
 <td colspan="4"></td>
 <td class="num neg">
-- ${{ basket.get_discount|floatformat:2 }}
+- تومان{{ basket.get_discount|floatformat:2 }}
 </td>
 </tr>
 {% endif %}
@@ -133,7 +124,7 @@
 <td>قیمت کلی</td>
 <td colspan="4"></td>
 <td class="num">
-${{ basket.get_total_price_after_discount|floatformat:2 }}
+تومان{{ basket.get_total_price_after_discount|floatformat:2 }}
 </td>
 </tr>
 
@@ -151,9 +142,12 @@ ${{ basket.get_total_price_after_discount|floatformat:2 }}
 
 <p class="text-right">
 <a href="{% url "product:product_list" %}" class="button light btn btn-primary height-auto btn-sm">بازگشت به خرید</a>
+
+    {% if basket %}
 <a href="{% url "orders:order_create" %}" class="button btn btn-primary height-auto btn-sm">
   بررسی سفارش
 </a>
+    {% endif %}
 </p>
 
 {% endblock %}

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+        <div style=" padding: 20px 300px;">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 600px;">
     <div class="article-entry">
         <h2>{{ object.code}}</h2>
         <p> {{ object.discount }} | {{ object.active }}</p>
@@ -8,4 +10,6 @@
     <p><a href="{% url 'panel:discountcode_edit' object.pk %}">Edit</a> |
     <a href="{% url 'panel:discountcode_delete' object.pk %}">Delete</a></p>
     <p>Back to <a href="{% url 'panel:discountcode_list' %}">All category</a>.</p>
+      </div>
+        </div>
 {% endblock content %}

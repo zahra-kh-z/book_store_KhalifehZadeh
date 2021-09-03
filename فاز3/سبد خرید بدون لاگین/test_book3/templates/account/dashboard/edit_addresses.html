@@ -2,9 +2,67 @@
 {% block title %}Edit Addresses{% endblock %}
 
 {% block sub_content %}
-<div class="col-6 mx-auto">
+
+{# <!-- Button trigger modal -->#}
+{#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">#}
+{# modal edit addr#}
+{#</button>#}
+{#<!-- Modal -->#}
+{#<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+{#  <div class="modal-dialog">#}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>#}
+{#        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#      </div>#}
+{#      <div class="modal-body">#}
+{#        ...#}
+{#  <h1 class="h3">ویرایش آدرس:</h1>#}
+{#  <hr />#}
+{#  <form name="address_form" class="account-form" method="post" enctype="multipart/form-data">#}
+{#    {% if form.errors %}#}
+{#    <div class="alert alert-primary" role="alert">#}
+{#      Error: Please try again!#}
+{#    </div>#}
+{#    {% endif %}#}
+{#    {% csrf_token %}#}
+{#    <label class="small fw-bold">{{ form.full_name.label}}</label>#}
+{#    {{ form.full_name }}#}
+{#    <label class="small fw-bold">{{ form.phone.label}}</label>#}
+{#    {{ form.phone }}#}
+{#    <label class="small fw-bold">{{ form.address_line.label}}</label>#}
+{#    {{ form.address_line }}#}
+{#    <label class="small fw-bold">{{ form.town_city.label}}</label>#}
+{#    {{ form.town_city }}#}
+{#    <label class="small fw-bold">{{ form.postcode.label}}</label>#}
+{#    {{ form.postcode }}#}
+{#    <button class="btn btn-primary btn-block py-2 mb-4 mt-4 fw-bold w-100" type="button" value="Submit" onclick="submitForm()">#}
+{#    Add Address#}
+{#    </button>#}
+{#  </form>#}
+{#<script>#}
+{#function submitForm() {#}
+{#   var form = document.getElementsByName('address_form')[0];#}
+{#   form.submit(); // Submit the form#}
+{#   form.reset();  // Reset all form data#}
+{#   return false; // Prevent page refresh#}
+{#}#}
+{#</script>#}
+{#          ....#}
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>#}
+{#        <button type="button" class="btn btn-primary">Save changes</button>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+
+
+
+      <div style=" padding: 20px 300px;">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 600px;">
   <h1 class="h3">ویرایش آدرس:</h1>
-{#  <div>Add a new delivery <b>address</b> and delivery preferences</div>#}
   <hr />
   <form name="address_form" class="account-form" method="post" enctype="multipart/form-data">
     {% if form.errors %}
@@ -27,10 +85,9 @@
     Add Address
     </button>
   </form>
-
-</div>
-
-<script> 
+   </div>
+        </div>
+<script>
 function submitForm() {
    var form = document.getElementsByName('address_form')[0];
    form.submit(); // Submit the form
@@ -38,4 +95,11 @@ function submitForm() {
    return false; // Prevent page refresh
 }
 </script>
+
+
+
+
+
+
+
 {% endblock %}

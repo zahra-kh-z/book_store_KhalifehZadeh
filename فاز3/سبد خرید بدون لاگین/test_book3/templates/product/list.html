@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% load static %}
 
 
@@ -13,12 +14,14 @@
 <div class="row">
     {% for each in labels %}
         {% if each.label == 'BestSeller' %}
+{#                 {% if each.books.all.count_use >= 0 %}#}
     <div class="col py-3">
         <div class="card " style="width: 13rem;">
 
         {% if each.image %}
             <a href="{{ each.get_absolute_url }}">
-            <img class="bookcover card-img-top" src="{{ each.image.url}}" alt="{{ each.name }}" style="width: 100px; height: 100px;" >
+                 <img class="bookcover card-img-top" src="{% if each.image %}{{ each.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ product.title }}" style="width: 200px; height: 200px;">
+
             </a>
         {% endif %}
             <div class="card-body">
@@ -50,7 +53,6 @@
     <h1>{% if category %}{{ category.name }}{% else %}همه{% endif %}</h1>
 <div class="row" >
     {% for product in products %}
-{#        {% if product.label == 'BestSeller' %}#}
     <div class="col py-3">
         <div class="card " style="width: 13rem;">
         {% if product.image %}
@@ -75,10 +77,10 @@
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
 
+
             </div>
         </div>
     </div>
-{#        {% endif %}#}
     {% endfor %}
 </div>
 

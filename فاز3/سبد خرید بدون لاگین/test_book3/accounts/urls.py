@@ -9,7 +9,8 @@ app_name = 'accounts'
 urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
-    path('register/', views.user_register, name='register'),
+    # for register without active email
+    # path('register/', views.user_register, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
 
     path("profile/edit/", views.edit_details, name="edit_details"),
@@ -57,7 +58,7 @@ urlpatterns = [
         name="password_reset_done",
     ),
     path(
-        "password_reset_confirm/OQ/password_reset_complete/",
+        "password_reset_confirm/MTQ/password_reset_complete/",
         TemplateView.as_view(template_name="account/password_reset/reset_status.html"),
         name="password_reset_complete",
     ),
@@ -71,5 +72,10 @@ urlpatterns = [
     # reports
     path('reports/', views.reports, name='reports'),
     path('all_users/', views.all_users, name='all_users'),
+
+
+    # for activate email after register
+    path("register/", views.account_register, name="register"),
+    path("activate/<slug:uidb64>/<slug:token>)/", views.account_activate, name="activate"),
 
 ]

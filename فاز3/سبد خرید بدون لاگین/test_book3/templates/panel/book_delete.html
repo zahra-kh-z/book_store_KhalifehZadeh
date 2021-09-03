@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+        <div style=" padding: 20px 300px; align-content: center">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 600px;">
     <h1>Delete</h1>
 {#     {% load crispy_forms_tags %}#}
+
     <form action="" method="post">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ book.name }}"?</p>
         <button class="btn btn-danger ml-2" type="submit">Confirm</button>
     </form>
+     </div>
+        </div>
 {% endblock content %}

@@ -2,9 +2,14 @@
 
 {% block content %}
     {% load crispy_forms_tags %}
+
+        <div style=" padding: 20px 300px;">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 700px;">
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" class="btn btn-primary mt-2" value="Register">
     </form>
+    </div>
+        </div>
 {% endblock %}

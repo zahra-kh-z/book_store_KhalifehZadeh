@@ -10,18 +10,17 @@
 
 {% block content %}
 
-    <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
-        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
-             <a class="nav-item nav-link active" href="{% url 'accounts:dashboard' %}">سفارش ها </a>
-             <a class="nav-item nav-link active" href="{% url 'basket:basket_detail' %}">سفارش </a>
-             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری </a>
-            <a class="nav-item nav-link active" href="{% url 'accounts:change_password' %}">تغییر پسورد </a>
-             <a class="nav-item nav-link active" href="{% url 'accounts:addresses' %}">آدرس </a>
+
+    <nav id='navbar' class=" navbar navbar-expand-lg bg-light" >
+{#        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">#}
+        <ul class="ms-auto navbar-nav  ms-md-2" dir="rtl">
+             <a class="nav-item nav-link active" href="{% url 'accounts:dashboard' %}"><h3>سفارش ها  </h3></a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}"> <h3> حساب کاربری</h3></a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:change_password' %}"><h3>تغییر پسورد</h3> </a>
+             <a class="nav-item nav-link active" href="{% url 'accounts:addresses' %}"><h3>آدرس</h3> </a>
+        <img src="{% static "img/book.jfif" %}" alt=" my image animal.jpg" style="height: 300px; width: 800px " >
         </ul>
-     </nav>
-
-
-
+{#     </nav>#}
 
 
 {% endblock %}

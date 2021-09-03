@@ -1,17 +1,68 @@
 {% extends "../sub_base.html" %}
 {% block title %}Edit Addresses{% endblock %}
-
 {% block sub_content %}
+
+
 <h1 class="h2">آدرس های ثبت شده</h1>
 <div>ویرایش آدرس های ثبت شده:</div>
 <hr />
 <div class="container px-0">
+{#     <a href="{% url "accounts:add_address" %}" class="text-reset text-decoration-none btn btn-primary mb-2" role="button">#}
+{#          <h1 class="h5">+ ثبت آدرس جدید</h1>#}
+{#      </a>#}
 
-     <a href="{% url "accounts:add_address" %}" class="text-reset text-decoration-none btn btn-primary mb-2" role="button">
-          <h1 class="h5">+ ثبت آدرس جدید</h1>
-      </a>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
++ ثبت آدرس جدید</button><br><br></h1>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">ثبت آدرس جدید</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <form name="address_form" class="account-form" method="post" enctype="multipart/form-data">
+    {% if form.errors %}
+    <div class="alert alert-primary" role="alert">
+      Error: Please try again!
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    <label class="small fw-bold">{{ form.full_name.label}}</label>
+    {{ form.full_name }}
+    <label class="small fw-bold">{{ form.phone.label}}</label>
+    {{ form.phone }}
+    <label class="small fw-bold">{{ form.address_line.label}}</label>
+    {{ form.address_line }}
+    <label class="small fw-bold">{{ form.town_city.label}}</label>
+    {{ form.town_city }}
+    <label class="small fw-bold">{{ form.postcode.label}}</label>
+    {{ form.postcode }}
+    <button class="btn btn-primary btn-block py-2 mb-4 mt-4 fw-bold w-100" type="button" value="Submit" onclick="submitForm()">
+    Add Address
+    </button>
+  </form>
+<script>
+function submitForm() {
+   var form = document.getElementsByName('address_form')[0];
+   form.submit(); // Submit the form
+   form.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+</script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
-
     {% for address in addresses %}
     <div class="col"  >
       <div class="card pb-3" style="background: gold">
@@ -28,11 +79,12 @@
           <p class="card-text m-0">کدپستی: {{address.postcode}}</p>
           <p class="card-text m-0">شماره تلفن: {{address.phone}}</p>
           <div class="pt-5" >
-           <a href="{% url 'accounts:edit_address' address.id %}" class="text-decoration-none">ویرایش</a>|
-            <a href="{% url 'accounts:delete_address' address.id %}" class="text-decoration-none">حذف</a>
-            {% if not address.default %}
-            | <a href="{% url 'accounts:set_default' address.id %}" class="text-decoration-none">پیش فرض</a>
+                {% if not address.default %}
+             <a href="{% url 'accounts:set_default' address.id %}" class="text-decoration-none">پیش فرض</a>|
             {% endif %}
+            <a href="{% url 'accounts:delete_address' address.id %}" class="text-decoration-none">حذف</a> |
+          <a href="{% url 'accounts:edit_address' address.id %}" class="text-decoration-none">ویرایش</a>
+
           </div>
         </div>
       </div>
@@ -41,5 +93,8 @@
     {% endfor %}
   </div>
 </div>
+<br><br>
+
+
 
 {% endblock %}

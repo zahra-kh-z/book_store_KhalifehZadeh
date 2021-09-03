@@ -20,6 +20,12 @@ from django.db.models import Count
 from persiantools.jdatetime import JalaliDateTime
 from product.models import Book
 from off.models import Discount
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from .forms import RegistrationForm
+from .tokens import account_activation_token
 
 """______ all method for user ______"""
 
@@ -50,7 +56,10 @@ def user_logout(request):
 
 
 def user_register(request):
-    """for register all users"""
+    """
+    for register all users
+    without send email for activate
+    """
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -138,7 +147,18 @@ def all_users(request):
 def view_address(request):
     """show all user address"""
     addresses = Address.objects.filter(user=request.user)
-    return render(request, "account/dashboard/addresses.html", {"addresses": addresses})
+    # for add address by modal
+    if request.method == "POST":
+        address_form = UserAddressForm(data=request.POST)
+        if address_form.is_valid():
+            address_form = address_form.save(commit=False)
+            address_form.user = request.user
+            address_form.save()
+            return HttpResponseRedirect(reverse("accounts:addresses"))
+    else:
+        address_form = UserAddressForm()
+
+    return render(request, "account/dashboard/addresses.html", {"addresses": addresses, "form": address_form})
 
 
 @login_required
@@ -275,3 +295,56 @@ def reports(request):
                    'book_count_p': book_count_p,
                    'book_count_no': book_count_no,
                    })
+
+
+"""
+for register user by email and send activate email for users
+"""
+
+
+def account_activate(request, uidb64, token):
+    """
+    for register user by email and send activate email for users
+    """
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, user.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return redirect('accounts:dashboard')
+    else:
+        return render(request, 'account/registration/activation_invalid.html')
+
+
+def account_register(request):
+    """
+    for register user by email and send activate email for users
+    """
+    if request.user.is_authenticated:
+        return redirect('accounts:dashboard')
+
+    if request.method == 'POST':
+        registerForm = RegistrationForm(request.POST)
+        if registerForm.is_valid():
+            user = registerForm.save(commit=False)
+            user.email = registerForm.cleaned_data['email']
+            user.set_password(registerForm.cleaned_data['password'])
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            subject = 'Activate your Account'
+            message = render_to_string('account/registration/account_activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject=subject, message=message)
+            return render(request, 'account/registration/register_email_confirm.html', {'form': registerForm})
+    else:
+        registerForm = RegistrationForm()
+    return render(request, 'account/registration/register.html', {'form': registerForm})

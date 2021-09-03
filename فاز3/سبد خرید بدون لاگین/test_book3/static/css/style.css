@@ -1,0 +1,30 @@
+
+
+@font-face {
+    font-family: 'Vazir';
+    src: url('../fonts/Vazir.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Vazir.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/Vazir.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/Vazir.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/Vazir.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+body {
+    font-family: 'Vazir', Arial, Helvetica, sans-serif !important;
+}
+
+#Mountain {
+    /*background: url('/img/book.jfif') no-repeat center center/cover;*/
+    /* background: url(../img/b.jpg) 0 0 no-repeat;*/
+    height: 500px;
+}
+
+#Mountain .Mountain-content {
+    color: #fff;
+    text-align: center;
+    padding: 100px;
+}
+
+.Mountain-content p {
+    padding: 40px;
+}

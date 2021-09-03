@@ -3,7 +3,7 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 *Created on 1400-05-12
 
-
+![bookstore app homepage](medias/1.JPG "Title Text")
 
 فایل های فاز2
 
@@ -54,4 +54,8 @@ export_as_csv admin model, add actions, diccount_actions
 optimize queries in Django admin
 
 TestCase for apps
+
+jquery, dataTables , font-family: Vazir
+
+Modal, register users by send email for activate user
 

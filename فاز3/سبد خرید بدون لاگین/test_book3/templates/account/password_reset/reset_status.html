@@ -2,17 +2,23 @@
 {% block title %}Reset Status{% endblock %}
 {% block content %}
 
-<div class="container">
+            <div style=" padding: 20px 300px;">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 700px;">
+<div class="container mt-5 px-5">
     <div>
         {% if 'email' in request.get_full_path %}
-        <h3 class="mb-4">Password Reset Success</h3>
-        <p>We've emailed you instructions for setting your password. You should receive the email shortly!</p>
+
+        <h3 class="mb-4 ">پسورد شما با موفقیت تغییر یافت.</h3>
+        <p>لینک تغییر پسورد برای شما ارسال شد. ایمیل خود را بررسی کنید.</p>
         {% endif%}
         {% if 'complete' in request.get_full_path %}
-        <h3 class="mb-4">Password Reset Success</h3>
-        <a href="{% url "account:login" %}">Login</a>
+        <h3 class="mb-4">پسورد شما با موفقیت تغییر یافت.</h3>
+        <a class="btn btn-primary mt-2" href="{% url "accounts:login" %}">Login</a>
         {% endif%}
     </div>
+    </div>
+</div>
+        </div>
 </div>
 
 {% endblock %}

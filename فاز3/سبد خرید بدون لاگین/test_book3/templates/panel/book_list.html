@@ -1,37 +1,42 @@
 {% extends 'base.html' %}
+
+
 {% block title %}کتاب ها{% endblock title %}
 {% block content %}
-
-        <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
-        <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
-             <a class="nav-item nav-link active" href="{% url 'panel:book_list' %}">کتاب</a>
-             <a class="nav-item nav-link active" href="{% url 'panel:category_list' %}">دسته بندی</a>
-             <a class="nav-item nav-link active" href="{% url 'panel:discount_list' %}">تخفیف</a>
-             <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری</a>
-        </ul>
-     </nav>
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/book_list.css' %}>
     <br>
     <a class=" btn btn-primary" href="{% url 'panel:book_new' %}">کتاب جدید</a>
- <a class=" btn btn-primary" href="{% url 'panel:book_table' %}">جدول کتاب ها</a>
+    <a class=" btn btn-primary" href="{% url 'panel:book_table' %}">جدول کتاب ها</a>
 
-    <br><br>
-    {% for book in object_list %}
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">{{ book.name }}</span> &middot;
-                <span class="text-muted">by {{ book.author }} |
-                {{ book.created }}</span>
-            </div>
-            <div class="card-body">
-                {{ book.price }}
-            </div>
+        <section class="bg-light p-3 m-3 text-center">
+        <table style="border-collapse:collapse; margin: 30px auto; ">
+        <thead>
+            <tr>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>زمان ایجاد</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in object_list %}
+                <tr>
+                        <td>{{ book.name|title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.created }}</td>
+                        <td>
+                            <a class="text-decoration-none" href="{{ book.get_absolute_url }}">جزئیات</a> |
+                           <a href="{% url 'panel:book_edit' book.pk %}">ویرایش</a> |
+                            <a href="{% url 'panel:book_delete' book.pk %}">حذف</a>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </section>
 
-            <div class="card-footer text-center text-muted">
-                <a href="{% url 'panel:book_edit' book.pk %}">Edit</a> |
-                <a href="{% url 'panel:book_delete' book.pk %}">Delete</a>
-            </div>
 
-        </div>
-        <br />
-    {% endfor %}
 {% endblock content %}
+
+

@@ -2,7 +2,8 @@
 {% block title %}Edit Profile{% endblock %}
 {% block sub_content %}
 
-<div class="col-6 mx-auto">
+          <div style=" padding: 20px 300px;">
+<div class="section-1  p-5 m-5 " style=" background: lightskyblue; max-width: 700px;">
 <form class="account-form" method="post" enctype="multipart/form-data">
     {% if user_form.is_valid and profile_form.is_valid  %}
     <div class="alert alert-primary" role="alert">
@@ -24,18 +25,19 @@
     <label class="small font-weight-bold">{{ user_form.email.label}}</label>
     {{ user_form.email }}
     <label class="small font-weight-bold">{{ user_form.full_name.label}}</label>
-{#    {{ user_form.first_name }}#}
     {{ user_form.full_name }}
-    <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw-bold w-100" type="submit" value="Save changes">Save
-        Changes</button>
+    <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw-bold w-10" type="submit" value="Save changes">اعمال تغییرات
+        </button>
     <hr class="mb-3">
 </form>
 <form class="account-form" action="{% url "accounts:delete_user" %}" method="post">
     {% csrf_token %}
     <p class=" h3 pt-4 font-weight-bold">حذف حساب کاربری</p>
     <p>مطمئن هستید که میخواهید حساب کاربری را حذف کنید؟</p>
-    <button type="submit" role="button" class="btn btn-danger btn-block py-2 mb-4 mt-5 fw-bold w-100">Delete</button>
+    <button type="submit" role="button" class="btn btn-danger btn-block py-2 mb-4 mt-5 fw-bold w-10">حذف</button>
 </form>
+
+        </div>
 </div>
 
 {% endblock %}

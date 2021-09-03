@@ -15,7 +15,7 @@
         {{ my_t }}
     {% endif %}
 
-    <nav id='navbar' class=" navbar navbar-expand-lg bg-dark" >
+    <nav id='navbar' class=" navbar navbar-expand-lg bg-light" >
         <ul class="ms-auto navbar-nav flex-row ms-md-2" dir="rtl">
              <a class="nav-item nav-link active" href="{% url 'panel:book_list' %}">کتاب</a>
              <a class="nav-item nav-link active" href="{% url 'panel:category_list' %}">دسته بندی</a>
@@ -24,6 +24,7 @@
              <a class="nav-item nav-link active" href="{% url 'accounts:edit_details' %}">حساب کاربری</a>
              <a class="nav-item nav-link active" href="{% url 'accounts:add_staff' %}">ثبت نام کارمند</a>
               <a class="nav-item nav-link active" href="{% url 'accounts:reports' %}">گزارش ها </a>
+
         </ul>
      </nav>
 

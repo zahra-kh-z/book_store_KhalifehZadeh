@@ -43,28 +43,40 @@ INSTALLED_APPS = [
     'orders',
     'myusers',
     'crispy_forms',
-    'accounts',
-    'panel',
     'rest_framework',
+    'accounts',
+    # 'panel',
+    # https://stacksecrets.com/django/django-admin-panel
+    # 'allauth.account',  # pip install django-allauth==0.42.0
+    # 'django_extensions',
 
 ]
 
-BASKET_SESSION_ID = 'basket'
+# Custom user model
+# AUTH_USER_MODEL = "account.Customer"
+# LOGIN_REDIRECT_URL = "/account/dashboard"
+# LOGIN_URL = "/account/login/"
 
+# Email setting
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # During development only
+# AUTH_USER_MODEL = 'myusers.User' # تشکیل شده از نام اپ و کلاس داخل فایل مدل
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_REDIRECT_URL = "/accounts/dashboard"
-LOGIN_URL = "/accounts/login/"
-# Email setting
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 # use gmail for email service
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # new
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'zahra.kh2005@gmail.com'
 EMAIL_HOST_PASSWORD = 'wkofzkrxnwjzbymk'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+"""
+This is the key that you are going to use to store the basket in the user session. Since
+Django sessions are managed per visitor, you can use the same basket session key for
+all sessions.
+
+"""
+BASKET_SESSION_ID = 'basket'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -109,7 +121,7 @@ DATABASES = {
 }
 
 """
-بعد از اصلاح و تکمیل کد دیتابیس را عوض کن
+for use postgres database
 """
 # DATABASES = {
 #     'default': {

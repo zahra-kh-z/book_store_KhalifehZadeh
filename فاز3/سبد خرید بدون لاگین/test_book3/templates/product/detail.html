@@ -1,64 +1,116 @@
 {% extends 'base.html' %}
-
 {% block title %}
 {{ product.name }}
 {% endblock %}
 
 {% block content %}
+
     {% load static %}
     <link rel="stylesheet" href={% static 'css/task_list.css' %}>
- <section class="bg-light p-3 m-3 text-center">
 
- <h2>جزئیات کتاب:</h2>
-{#Vertical Headings:#}
-     {% if product.image %}
-      <img style="width: 200px; height: 200px;" class="ui medium rounded image" src={{product.image.url}}>
-     {% endif %}
+<article class="section-1  p-3 m-3 " style="padding-bottom: 30px; background: lightskyblue">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="bov-img" style="position: relative">
+                    {% if product.image %}
+                      <img style="width: 200px; height: 200px;" class="ui medium rounded image" src={{product.image.url}}>
+                     {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-5 col-xs-12">
+                <div class="book-info text-right">
+                    <div class="row">
+                        <div class="col-sm-11">
+                                <h1 style="color: #404040;">{{ product.name }}</h1>
+                            <ul class="list-unstyled">
+                                <li class="author_title white">
+                                    <span class="title-list">نویسنده</span> :
+                                        {{ product.author }}
+                                             <li class="author_title white">
+                                            <span class="title-list">قیمت واحد</span> :
+                                {{ product.unit_price }}
+                                                                                                                                                                                                                <li class="author_title white">
+                                            <span class="title-list"> تخفیف</span> :
+                                {{ product.discount_book }}
+                                            </ul>
+                                            <div class="text-justify">
+                                            <p class="fidibo-info ">
+                                                {{ product.description }}
+                                            </p>
+                                                </div>
+                            <div class="text-center action-area">
+                                <div class="btns visible-xs ">
+                                <div class="similar-books" style="margin-bottom: 15px">
+                                        </div>
 
-{#    <h2>#}
-{#      <a href="{{ product.category.get_absolute_url }}">#}
-{#        {{ product.category }}#}
-{#      </a>#}
-{#    </h2>#}
+                                    <div class="well well-sm ">
 
-<table style="border-collapse:collapse; margin: 30px auto ">
-  <tr>
-    <th>عنوان:</th>
-    <td>{{ product.name }}</td>
-
-  </tr>
-  <tr>
-
-  <tr>
-    <th>برچسب:</th>
-    <td>{{ product.label }}</td>
-  </tr>
-       <tr>
-    <th>قیمت واحد:</th>
-    <td>{{ product.unit_price }}</td>
-  </tr>
-   <tr>
-    <th>تخفیف:</th>
-    <td>{{ product.discount_book }}</td>
-  </tr>
-   <tr>
-    <th>موجودی:</th>
-    <td>{{ product.available }}</td>
-  </tr>
-   <tr>
-    <th>نویسنده:</th>
-    <td>{{ product.author }}</td>
-  </tr>
-</table>
-
-      <form action="{% url 'basket:basket_add' product.id %}" method="post">
-          {{ basket_product_form }}
-          {% csrf_token %}
-             <input value="خرید"  class="btn btn-primary btn-md my-0 p"  type="submit" >
-                <i class="fas fa-shopping-cart ml-1"></i>
-            </input>
-      </form>
+                                        <div class="">
+                                            <form action="{% url 'basket:basket_add' product.id %}" method="post">
+                                              {{ basket_product_form }}
+                                              {% csrf_token %}
+                                                 <input value="خرید"  class="btn btn-primary btn-md my-0 p"  type="submit" >
+                                                    <i class="fas fa-shopping-cart ml-1"></i>
+                                                </input>
+                                          </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 text-center action-area">
+                </section>
+        </div>
+    </section>
+</article>
 
 
- </section>
+
+{#<h2>جزئیات کتاب:</h2>#}
+{#     {% if product.image %}#}
+{#      <img style="width: 200px; height: 200px;" class="ui medium rounded image" src={{product.image.url}}>#}
+{#     {% endif %}#}
+{#<table style="border-collapse:collapse; margin: 30px auto ">#}
+{#  <tr>#}
+{#    <th>عنوان:</th>#}
+{#    <td>{{ product.name }}</td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#  <tr>#}
+{#    <th>برچسب:</th>#}
+{#    <td>{{ product.label }}</td>#}
+{#  </tr>#}
+{#       <tr>#}
+{#    <th>قیمت واحد:</th>#}
+{#    <td class="text-decoration-line-through ">{{ product.unit_price }}</td>#}
+{#  </tr>#}
+{#   <tr>#}
+{#    <th>تخفیف:</th>#}
+{#    <td>{{ product.discount_book }}</td>#}
+{#  </tr>#}
+{#   <tr>#}
+{#    <th>موجودی:</th>#}
+{#    <td>{{ product.available }}</td>#}
+{#  </tr>#}
+{#   <tr>#}
+{#    <th>نویسنده:</th>#}
+{#    <td>{{ product.author }}</td>#}
+{#  </tr>#}
+{#</table>#}
+{#      <form action="{% url 'basket:basket_add' product.id %}" method="post">#}
+{#          {{ basket_product_form }}#}
+{#          {% csrf_token %}#}
+{#             <input value="خرید"  class="btn btn-primary btn-md my-0 p"  type="submit" >#}
+{#                <i class="fas fa-shopping-cart ml-1"></i>#}
+{#            </input>#}
+{#      </form>#}
+{# </section>#}
+
+
+
 {% endblock content %}

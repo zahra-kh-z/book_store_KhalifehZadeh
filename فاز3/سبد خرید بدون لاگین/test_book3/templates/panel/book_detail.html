@@ -3,7 +3,7 @@
     <div class="article-entry">
         <h2>{{ object.name}}</h2>
         <p>by {{ object.author }} | {{ object.createe }}</p>
-        <p>{{ object.price }}</p>
+        <p >{{ object.price }}</p>
     </div>
     <p><a href="{% url 'panel:book_edit' book.pk %}">Edit</a> |
     <a href="{% url 'panel:book_delete' book.pk %}">Delete</a></p>
