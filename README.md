@@ -4,6 +4,9 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 *Created on 1400-05-12
 
 ![bookstore app homepage](medias/1.JPG "Title Text")
+![bookstore app homepage](medias/2.JPG "Title Text")
+![bookstore app homepage](medias/3.JPG "Title Text")
+![bookstore app homepage](medias/4.JPG "Title Text")
 
 فایل های فاز2
 
