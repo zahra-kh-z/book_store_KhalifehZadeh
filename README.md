@@ -5,11 +5,11 @@ This code suggest by Zahra Khalifeh-Zadeh for Book_Store Final_Project_Django. a
 
 
 ![bookstore app homepage](https://github.com/zahra-kh-z/book_store_KhalifehZadeh/blob/master/%D9%81%D8%A7%D8%B23/%D8%B3%D8%A8%D8%AF%20%D8%AE%D8%B1%DB%8C%D8%AF%20%D8%A8%D8%AF%D9%88%D9%86%20%D9%84%D8%A7%DA%AF%DB%8C%D9%86/test_book3/medias/1.JPG)
-![bookstore app homepage](../../../src/medias/2.JPG "Title Text")
-![bookstore app homepage](medias/3.JPG "Title Text")
+![bookstore app homepage](https://github.com/zahra-kh-z/book_store_KhalifehZadeh/blob/master/%D9%81%D8%A7%D8%B23/%D8%B3%D8%A8%D8%AF%20%D8%AE%D8%B1%DB%8C%D8%AF%20%D8%A8%D8%AF%D9%88%D9%86%20%D9%84%D8%A7%DA%AF%DB%8C%D9%86/test_book3/medias/2.JPG)
+![bookstore app homepage](https://github.com/zahra-kh-z/book_store_KhalifehZadeh/blob/master/%D9%81%D8%A7%D8%B23/%D8%B3%D8%A8%D8%AF%20%D8%AE%D8%B1%DB%8C%D8%AF%20%D8%A8%D8%AF%D9%88%D9%86%20%D9%84%D8%A7%DA%AF%DB%8C%D9%86/test_book3/medias/3.JPG)
+![bookstore app homepage](https://github.com/zahra-kh-z/book_store_KhalifehZadeh/blob/master/%D9%81%D8%A7%D8%B23/%D8%B3%D8%A8%D8%AF%20%D8%AE%D8%B1%DB%8C%D8%AF%20%D8%A8%D8%AF%D9%88%D9%86%20%D9%84%D8%A7%DA%AF%DB%8C%D9%86/test_book3/medias/4.JPG)
 ![bookstore app homepage](medias/4.JPG "Title Text")
 
-[comment]: <> (![bookstore app homepage]&#40;https://www.gardendesign.com/pictures/images/675x529Max/site_3/helianthus-yellow-flower-pixabay_11863.jpg&#41;)
 فایل های فاز2
 
 - اسکرین شات از خروجی سایت
