@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="clean templates">
-      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/medias/2.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/medias/3.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/medias/4.JPG" afterDir="false" />
+    <list default="true" id="40eef59e-92b7-4640-a3ce-3edb0da829bb" name="Default Changelist" comment="add image for readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/created.html" beforeDir="false" afterPath="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/templates/order/created.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,15 +23,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/فاز3/سبد خرید بدون لاگین/test_book3/medias" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\src" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\medias" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\test_book3" />
       <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\off" />
-      <recent name="C:\1_venv_django\book_store_KhalifehZadeh\فاز3\سبد خرید بدون لاگین\test_book3\templates\panel" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -70,7 +65,7 @@
       <workItem from="1630412949212" duration="900000" />
       <workItem from="1630427189039" duration="10751000" />
       <workItem from="1630521758744" duration="7880000" />
-      <workItem from="1630574070528" duration="9669000" />
+      <workItem from="1630574070528" duration="12004000" />
     </task>
     <task id="LOCAL-00001" summary="src">
       <created>1628181605675</created>
@@ -289,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630630243687</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add image for readme">
+      <created>1630630903952</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1630630903952</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +310,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="readme" />
     <MESSAGE value="add book_store postgres database" />
     <MESSAGE value="add product app" />
     <MESSAGE value="add orders app" />
@@ -333,6 +334,7 @@
     <MESSAGE value="add comments for orders app" />
     <MESSAGE value="add comments for product and panel app" />
     <MESSAGE value="clean templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean templates" />
+    <MESSAGE value="add image for readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add image for readme" />
   </component>
 </project>
